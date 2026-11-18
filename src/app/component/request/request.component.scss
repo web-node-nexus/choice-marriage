@@ -1,0 +1,62 @@
+.body {
+    text-align: center;
+    padding: 40px 10px;
+    // background: #EBF0F5;
+}
+
+h1 {
+    color: #88B04B;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+p {
+    // color: #404F5E;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-size: 20px;
+    margin: 0;
+}
+.rounded-circle {
+    border-radius: 50%;
+  }
+.btn.btn-label-danger {
+    background-color: #fd397a1a;
+    color: #fd397a;
+    cursor: text !important;
+}
+.btn.btn-label-success{
+    background-color: #0abb871a;
+    color: #0abb87;
+    cursor: text !important;
+}
+img {
+    // color: #9ABC66;
+    // font-size: 100px;
+    // line-height: 200px;
+    // margin-left: -2px;
+    // margin-top: 23px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    margin-bottom: 10px;
+    border-radius: 12px;
+}
+
+// .card {
+//     background: white;
+//     padding: 10px;
+//     border-radius: 8px;
+//     box-shadow: 0 2px 3px #C8D0D8;
+//     display: inline-block;
+//     margin: 0 auto;
+// }
+
+.truncate-textf {
+    display: block;
+    width: 200px; /* Adjust this value as needed */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+  

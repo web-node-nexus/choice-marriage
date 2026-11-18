@@ -1,0 +1,56 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-9">
+      <div class="card custom-card p-lg-3 p-xl-4">
+        <div class="card-body">
+          <h4 class="card-title text-danger text-center mb-3">CONTACT THE ADMIN</h4>
+          <span>If you have any queries or any type of enquiry, please feel free to contact the admin.</span>
+
+          <!-- Query Form -->
+          <form class="text-center mt-4" (ngSubmit)="submitForm()">
+            <div class="mb-4">
+              <label for="comments" class="form-label mb-3 fw-medium">Please Write Your Query:</label>
+              <textarea class="form-control" id="comments" rows="8" placeholder="Enter your message here" name="query"
+                [(ngModel)]="query"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-lg btn-danger ed">Send Message</button>
+          </form>
+          <!-- End Query Form -->
+          <ng-container *ngIf="contactadmindata">
+            <div class="table-responsive mt-4">
+              <table class="table table-bordered text-center">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Ticket No</th>
+                    <th>Created At</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of contactadmindata; index as i">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ data?.ticket_no }}</td>
+                    <td>{{ data?.created_At | date:'dd MMM yyyy'}}</td>
+                    <td>
+                      <ng-container *ngIf="data?.new == 1">
+                        Pending
+                      </ng-container>
+                      <ng-container *ngIf="data?.new == 2">
+                        Working on it
+                      </ng-container>
+                      <ng-container *ngIf="data?.new == 3">
+                        <span (click)="adminmessage(data?.id)" class="cur">Resolved <i class="fa-solid fa-eye"></i></span>
+                      </ng-container>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

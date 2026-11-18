@@ -1,0 +1,119 @@
+.cm-auth-shell {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  padding: 2.5rem 1.25rem 3rem;
+  overflow: hidden;
+}
+
+.cm-auth-shell__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 420px at 8% -10%, rgba(190, 18, 60, 0.14), transparent 55%),
+    radial-gradient(700px 380px at 95% 10%, rgba(15, 118, 110, 0.12), transparent 50%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f6 100%);
+  z-index: 0;
+}
+
+.cm-auth-shell__frame {
+  position: relative;
+  z-index: 1;
+  width: min(1080px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.cm-auth-shell__brand {
+  padding: 1.5rem 0.5rem;
+}
+
+.cm-auth-shell__eyebrow {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #be123c;
+}
+
+.cm-auth-shell__brand h1 {
+  margin: 0.7rem 0 0;
+  font-family: var(--font-display) !important;
+  font-size: clamp(2rem, 3.5vw, 3rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  color: #0f172a;
+}
+
+.cm-auth-shell__brand p:last-child {
+  margin-top: 1rem;
+  max-width: 34ch;
+  color: #64748b;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.cm-auth-shell__card {
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 28px;
+  box-shadow: 0 30px 70px rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+  animation: cm-rise 0.45s ease both;
+}
+
+.cm-auth-shell__tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+  padding: 0.8rem;
+  background: #0f172a;
+}
+
+.cm-auth-shell__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border-radius: 999px;
+  text-decoration: none !important;
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.68) !important;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.cm-auth-shell__tab.is-active {
+  background: linear-gradient(135deg, #f43f5e, #9f1239);
+  color: #fff !important;
+}
+
+.cm-auth-shell__body {
+  padding: 1.15rem 1.25rem 1.5rem;
+  max-height: min(78vh, 920px);
+  overflow: auto;
+}
+
+@media (max-width: 900px) {
+  .cm-auth-shell__frame {
+    grid-template-columns: 1fr;
+  }
+
+  .cm-auth-shell__brand {
+    text-align: center;
+    padding-bottom: 0;
+  }
+
+  .cm-auth-shell__brand p:last-child {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

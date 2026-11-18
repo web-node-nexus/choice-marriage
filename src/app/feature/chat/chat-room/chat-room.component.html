@@ -1,0 +1,84 @@
+<div class="mainChater container pb-5 p-3">
+  <div class="mb-3 p-1 d-flex justify-content-between align-items-center"
+    style=" box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 12px;">
+    <div class="">
+      <div class="d-flex">
+        <!-- <div class="online-circle me-3"></div> -->
+        <h6 class="h6 btn btn-danger fw-bold " style="font-size:14px;"
+          [routerLink]="'/v1/member-profile/'+establishConnection.receiver_id"><i
+            class="fa-regular fa-id-card pe-2"></i> {{establishConnection.receiver_id}}</h6>
+      </div>
+
+      <ng-template #noAccessForSendMessages>
+        <div class="rounded custom-card card container pt-2 pb-2 mt-2">
+          <p class="text-center text-danger">YOU DON'T HAVE PERMISSION TO SEND MESSAGES</p>
+          <button [routerLink]="'/subscription/plan'" class="btn btn-primary btn-block">Upgrade</button>
+        </div>
+      </ng-template>
+    </div>
+    <div class="d-flex">
+      <ng-container *ngIf="show">
+        <h6 class="h6 btn btn-success fw-bold" style="font-size:14px; background-color: green;" *ngIf="online"><i
+            class="fa-solid fa-globe pe-2"></i> Online</h6>
+        <h6 class="h6 btn btn-danger fw-bold" style="font-size:14px;" *ngIf="!online"><i
+            class="fa-solid fa-globe pe-2"></i> Offline</h6>
+      </ng-container>
+    </div>
+  </div>
+  <div style=" box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 12px;">
+    <div class="chatArea changeW chatMessages " #chatContainer>
+      <ng-container *ngFor="let chat of message;trackBy: trackByFn">
+        <div class="message " [ngClass]="messageCreationForm.value.sender_id==chat.sender_id?'mMess':''">
+          <ng-container *ngIf="messageCreationForm.value.sender_id!=chat.sender_id">
+            <div class="prof rounded-circle" style="background-color: #ff7b54;"
+              [title]="establishConnection.reciver_name">
+              <p class="mb-0">{{establishConnection.reciver_name|firstChar}}</p>
+            </div>
+          </ng-container>
+          <div class="messArea"
+            [ngClass]="messageCreationForm.value.sender_id!=chat.sender_id?'bg-for-text-reciver':'mMess'">
+            <div class="textM">{{chat?.message_content}}
+            </div>
+          </div>
+          <ng-container *ngIf="messageCreationForm.value.sender_id==chat.sender_id">
+            <div class="prof rounded-circle" [title]="establishConnection.sender_name">
+              <p class="mb-0">{{establishConnection.sender_name|firstChar}}</p>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+    <ng-container *ngxPermissionsOnly="'PROFILE_SEND_MESSAGE'; else noAccessForSendMessages">
+      <form [formGroup]="messageCreationForm">
+        <div class="messageBox">
+          <div style="width:80%">
+            <p-dropdown [options]="staticMessageData" optionLabel="name" [filter]="true" filterBy="name"
+              [showClear]="true" placeholder="Select your message" [style]="{ width: '100%' }"
+              formControlName="message_content" optionValue="name" styleClass="w-100">
+              <ng-template pTemplate="selectedItem">
+                <div class="country-item country-item-value">
+                  <div>
+                    {{
+                    messageCreationForm.value
+                    .message_content
+                    }}
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template let-data pTemplate="item">
+                <div class="country-item">
+                  <div>
+                    {{ data.name}}
+                  </div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+          <button class="btn btn-success text-white rounded-circleg text-success send_btn  w-100 mt-2" (click)="send()">
+            <i class="fa-solid fa-paper-plane"></i> <small class="d-sm-none d-none d-lg-block d-md-block">Send</small>
+          </button>
+        </div>
+      </form>
+    </ng-container>
+  </div>
+</div>

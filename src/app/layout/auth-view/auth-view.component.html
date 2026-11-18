@@ -1,0 +1,21 @@
+<section class="cm-auth-shell">
+  <div class="cm-auth-shell__bg" aria-hidden="true"></div>
+
+  <div class="cm-auth-shell__frame">
+    <div class="cm-auth-shell__brand">
+      <p class="cm-auth-shell__eyebrow">Patarabibaha</p>
+      <h1>Thoughtful matchmaking, made clear.</h1>
+      <p>Create your profile or sign in to continue discovering compatible partners with care and privacy.</p>
+    </div>
+
+    <div class="cm-auth-shell__card">
+      <div class="cm-auth-shell__tabs">
+        <a routerLink="/auth/register" routerLinkActive="is-active" class="cm-auth-shell__tab">Register</a>
+        <a routerLink="/auth/login" routerLinkActive="is-active" class="cm-auth-shell__tab">Sign in</a>
+      </div>
+      <div class="cm-auth-shell__body">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+<div class="modal-content">
+  <!-- Close button -->
+  <button mat-icon-button class="close-button" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+
+  <!-- Kundali View Section -->
+  <ng-container *ngFor="let container of imagecontener" class="text-center">
+    <h2 class="section-title colorful-text">View Kundali</h2>
+    <div class="kundali-image-container">
+      <!-- Add download attribute to the image -->
+      <a [href]="filepath + container?.ID_image" download target="_blank">
+        <img [src]="filepath + container?.ID_image" alt="" class="kundali-image">
+      </a>
+    </div>
+  </ng-container>
+
+  <!-- Contact Admin Section -->
+  <ng-container *ngIf="showadmindata" class="text-center">
+    <h2 class="section-title colorful-text">Contact Admin</h2>
+    <div class="admin-contact-info">
+      <p class="info colorful-text">Phone Number: {{ admindata?.phone_no }}</p>
+      <p class="info colorful-text">WhatsApp Number: {{ admindata?.whatsapp_no }}</p>
+      <p class="info colorful-text">Gmail: {{ admindata?.gmail_id }}</p>
+    </div>
+    <!-- Dropdown for Call/WhatsApp/Send Email -->
+    <div ngbDropdown class="dropdown d-inline-block">
+      <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton" ngbDropdownToggle>
+        Contact Options
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" ngbDropdownMenu>
+        <a class="dropdown-item" href="tel:{{ admindata?.phone_no }}"><i class="bi bi-telephone"></i> Call</a>
+        <a class="dropdown-item" href="https://wa.me/{{ admindata?.whatsapp_no }}"><i class="bi bi-whatsapp"></i>
+          WhatsApp</a>
+        <a class="dropdown-item" href="mailto:{{ admindata?.gmail_id }}"><i class="bi bi-envelope"></i> Send Email</a>
+        <a class="dropdown-item" href="javascript:void(0);" (click)="requestKundali()"><i class="bi bi-chat-dots"></i>
+          Send Request</a>
+      </div>
+    </div>
+  </ng-container>
+</div>

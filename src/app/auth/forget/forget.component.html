@@ -1,0 +1,26 @@
+<div class=" font-segeo md:w-[100%]">
+  <div class="border p-2 " style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; border-radius: 12px;">
+      <form [formGroup]="forg">
+          <div class="">
+              <div class=" ">
+                  <div class="space-y-1 mt-[0rem]">
+                      <div>
+                          <label class="relative block">
+                              <div class="text-[red] text-[12px] h-[1rem]">
+                              </div>
+                              <input id="name" type="text" autocomplete="off" placeholder="e-mail ID / Mobile Number"
+                                  class="w-[14rem] form-input shadow-sm bg-[#FFFFFF] text-[#000000] text-[13px] focus:outline-none rounded-[5px] focus:ring-[#2D2C6F] border border-[#F18181] w-full block p-2"
+                                  formControlName="userID">
+                          </label>
+                      </div>
+                  </div>
+                  <div>
+                      <button type="button" (click)="frog()"
+                          class="btn w-100 text-center py-2 border border-transparent rounded-[5px] shadow-sm text-[14px] text-[#FFFFFF] font-semibold bg-[#D10A11] hover:bg-[#D10A11]  focus:outline-none focus:ring-2 hover:text-[#fff] focus:ring-offset-2 next">LOGIN</button>
+                  </div>
+
+              </div>
+          </div>
+      </form>
+  </div>
+</div>

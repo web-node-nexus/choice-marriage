@@ -1,0 +1,101 @@
+<section class="cm-plans">
+  <div class="cm-plans__hero">
+    <div class="cm-plans__hero-copy">
+      <p class="cm-plans__kicker">Membership</p>
+      <h1>Invest in conversations that can become a lifetime.</h1>
+      <p>
+        Free discovery gets you started. Membership unlocks deeper visibility, more messages, and the confidence to move from interest to introduction — with clear pricing and no confusion.
+      </p>
+    </div>
+  </div>
+
+  <div class="container w-95 cm-plans__body">
+    <div class="cm-plans__guide">
+      <h2>How to choose the right membership</h2>
+      <p>
+        Start by completing your free profile. When you are ready for deeper conversations, upgrade to a plan that matches your pace —
+        more visibility, more contacts, more messages, and clearer access to profiles that fit your preferences.
+      </p>
+      <ul>
+        <li><strong>Free plans</strong> help you begin, explore, and understand the platform.</li>
+        <li><strong>Mid plans</strong> are ideal when you want more outreach and better engagement.</li>
+        <li><strong>Premium plans</strong> support serious, high-intent searching with stronger communication limits.</li>
+      </ul>
+      <p>
+        Every plan below shows validity, photos, messages, horoscopes, contacts, and discount clearly so you can decide with confidence.
+        If you need help choosing, contact our support team anytime.
+      </p>
+    </div>
+
+    <div class="cm-plans__status" *ngIf="loading">
+      <div class="cm-plans__spinner"></div>
+      <p>Loading membership plans…</p>
+    </div>
+
+    <div class="cm-plans__status" *ngIf="!loading && loadError">
+      <h2>Plans could not load right now</h2>
+      <p>Please check your connection and try again. Your membership options will appear here.</p>
+      <button type="button" class="cm-plans__retry" (click)="retry()">Retry</button>
+    </div>
+
+    <div class="cm-plans__status" *ngIf="!loading && !loadError && (!plan || plan.length === 0)">
+      <h2>No plans available</h2>
+      <p>Please check back soon, or contact support for membership help.</p>
+      <button type="button" class="cm-plans__retry" (click)="retry()">Refresh</button>
+    </div>
+
+    <div class="row" *ngIf="!loading && plan?.length">
+      <div
+        class="col-12 col-md-6 col-lg-6 col-xl-3 pricing_wrapper my-4"
+        *ngFor="let planhtml of plan">
+        <article class="cm-plan" [attr.data-tone]="planTone(planhtml.membership_plan_amount)">
+          <header class="cm-plan__head">
+            <span class="cm-plan__badge">{{ planhtml.membership_plan_type }}</span>
+            <div class="cm-plan__price">
+              <span class="cm-plan__amount">{{ planhtml.membership_plan_amount | currency:'INR':'symbol':'1.0-0' }}</span>
+              <span class="cm-plan__validity">/ {{ planhtml.membership_plan_validity_date }} days</span>
+            </div>
+            <p class="cm-plan__discount" *ngIf="planhtml.membership_plan_dicount">
+              {{ planhtml.membership_plan_dicount }}% discount included
+            </p>
+          </header>
+
+          <ul class="cm-plan__list">
+            <li>
+              <i class="fa-solid fa-eye"></i>
+              Visibility: {{ planhtml.membership_plan_visibility }}
+            </li>
+            <li>
+              <i class="fa-solid fa-image"></i>
+              Photos: {{ planhtml.membership_plan_no_of_photo }}
+            </li>
+            <li>
+              <i class="fa-solid fa-comment"></i>
+              Messages: {{ planhtml.membership_plan_of_send_message }}
+            </li>
+            <li>
+              <i class="fa-solid fa-star"></i>
+              Horoscopes: {{ planhtml.membership_plan_no_of_horscope }}
+            </li>
+            <li>
+              <i class="fa-solid fa-address-book"></i>
+              Contacts: {{ planhtml.membership_plan_no_of_contact }}
+            </li>
+            <li>
+              <i class="fa-solid fa-calendar-check"></i>
+              Validity: {{ planhtml.membership_plan_validity_date }} days
+            </li>
+          </ul>
+
+          <div class="cm-plan__cta">
+            <a
+              class="btn cm-plan__buy"
+              [routerLink]="'/subscription/payment/' + planhtml?.membership_plan_id">
+              Buy Now
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

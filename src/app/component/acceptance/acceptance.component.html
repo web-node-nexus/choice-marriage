@@ -1,0 +1,43 @@
+<div class="container">
+   
+    <div class="px-4 py-3 bg-branding text-white rounded" href="#">
+        <h3 class="h5 mb-0"><i class="fa-solid fa-bullhorn me-2"></i>Acceptance Request</h3>
+    </div>
+    <p-table [value]="requestedProfileList" [resizableColumns]="true" responsiveLayout="stack"  >
+        <ng-template pTemplate="header" class="justify-content-center">
+            <tr>
+
+                <!-- <th>Profile ID</th> -->
+                <th>Profile Name</th>
+                <th>Profile Images</th>
+                <th>Created At</th>
+                <th>Curent Status</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-profile>
+            <tr class="border" style="box-shadow: 0.063rem 0 1.25rem 0 #ced0d3;">
+                <!-- <td class="justify-content-center">{{profile?.request_by_profile_id}}</td> -->
+                <td class="justify-content-center">{{profile?.request_by_name}}</td>
+                 <td class="justify-content-center">
+                    <img [src]="imageURL+profile.requested_by_profile_img"  width="100" class="shadow-4" onerror="this.src='/assets/img/no_profile_picture_found.jpg'" style="border-radius: 12px;"/>
+                </td>
+                <td class="justify-content-center">{{profile?.created_At |date:'medium'}}</td>
+                <td class="justify-content-center"><button class="button-88" role="button">{{profile?.acceptance_status}} </button></td>
+                <td class="justify-content-center">
+                    <div class="d-flex flex-column gap-1">
+                        <button (click)="allow(profile,'Allow')" class="button-3" role="button"  >Allow</button>
+                        <button (click)="allow(profile,'Not Allow')" class="button-1 " role="button"  >Not Allow</button>
+                        <!-- <button class="button-30 " role="button" style="color: red;" (click)="removeFromIgnoreList(profile)">Delete</button> -->
+                    </div>
+                    <!-- <button class="button-30" role="button">Delet</button> -->
+                </td>
+              
+               
+            </tr>
+        </ng-template>
+    </p-table>
+    <ng-container *ngIf="requestedProfileList.length==0">
+        <p class="text-center text-danger">No Data Availble</p>
+    </ng-container>
+</div>

@@ -1,0 +1,48 @@
+.modal-content {
+  position: relative;
+  padding: 20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+}
+.custom-button {
+  background-color: #ea4c89; /* Set background color */
+  color: white; /* Set text color */
+}
+
+.custom-button:hover {
+  background-color: #d6366f; /* Set hover background color */
+}
+.modal-content {
+  padding: 20px; /* Add padding to the modal content */
+}
+
+.section-title {
+  margin-bottom: 10px; /* Add margin below section titles */
+}
+
+.image {
+  margin-bottom: 20px; /* Add margin below images */
+}
+
+.info {
+  margin-bottom: 5px; /* Add margin below info paragraphs */
+}
+
+.custom-button {
+  margin-top: 20px; /* Add margin above the Close button */
+}
+.colorful-text {
+  color: red; /* Example color */
+}
+// .close-button {
+//   position: absolute;
+//   top: 10px; /* Adjust top position as needed */
+//   right: 10px; /* Adjust right position as needed */
+//   z-index: 9999; /* Ensure it's on top of other content */
+// }
+
+

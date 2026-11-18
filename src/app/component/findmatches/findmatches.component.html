@@ -1,0 +1,243 @@
+<div class="container-fluid cm-findmatches">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="margin"></div>
+      <div class="d-flex justify-content-center">
+        <ul class="nav nav-pills scroll-category mb-3">
+          <li class="nav-item me-2 me-lg-3">
+            <a class="nav-link  rounded-pill text-uppercase py-2 px-3  custclass" [class.active]="second"
+              aria-current="page" (click)="secondTrueFu()">Your Caste</a>
+          </li>
+          <li class="nav-item me-2 me-lg-3">
+            <a class="nav-link  rounded-pill text-uppercase py-2 px-3  custclass" [class.active]="third"
+              (click)="thirdTrueFu()">Other Caste</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--
+<ng-container *ngIf="first">
+
+  <div>
+
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Recommended
+        Matches </h3>
+    </div>
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="recommend_matches"
+      [link]="'recommend_matches'"></app-recommended-matches-profile>
+  </div>
+
+  <div class="mt-4 mt-md-4">
+
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Spotlight
+        Profiles {{ sharedData?.spotlight }}</h3>
+    </div>
+    <app-recommended-matches-profile [sectionNameRequired]="false" [sectionNameRequired]="false" apiName="spotlight"
+      [link]="'spotlight'"></app-recommended-matches-profile>
+
+  </div>
+
+  <div class="mt-4 mt-md-4">
+
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i>Online
+        Profiles {{ sharedData?.getOnlinedata }}</h3>
+    </div>
+
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="getOnlinedata"
+      [link]="'getOnlinedata'"></app-recommended-matches-profile>
+  </div>
+
+  <div class="mt-4 mt-md-4">
+
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Premium
+        Profiles{{ sharedData?.premium_matches }}</h3>
+    </div>
+ \
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="premium_matches"
+      [link]="'premium_matches'"></app-recommended-matches-profile>
+
+  </div>
+
+  <div class="mt-4 mt-md-4">
+
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Recently
+        Joined Profiles {{ sharedData?.RecentlyJoinedMatches }}</h3>
+
+    </div>
+
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="RecentlyJoinedMatches"
+      [link]="'RecentlyJoinedMatches'"></app-recommended-matches-profile>
+
+  </div>
+</ng-container> -->
+
+<ng-container *ngIf="second">
+
+  <div>
+
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Recommended
+        Matches </h3>
+    </div>
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="byCastmatchesforindivisual"
+      [link]="'byCastmatchesforindivisual'"></app-recommended-matches-profile>
+  </div>
+
+  <div class="mt-4 mt-md-4">
+    <!-- <div class="mb-3 text-center">
+              <span class="h6 mb-0 px-4 py-2 bg-branding text-white rounded-pill text-uppercase">Spotlight
+                    Profiles</span>
+        </div> -->
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Spotlight
+        Profiles {{ sharedData?.spotlight }}</h3>
+    </div>
+    <app-recommended-matches-profile [sectionNameRequired]="false" [sectionNameRequired]="false"
+      apiName="byCastgetSpotlightdata" [link]="'byCastgetSpotlightdata'"></app-recommended-matches-profile>
+
+  </div>
+
+  <div class="mt-4 mt-md-4">
+    <!-- <div class="mb-3 text-center">
+              <span class="h6 mb-0 px-4 py-2 bg-branding text-white rounded-pill text-uppercase">Online
+                    Profiles</span>
+        </div> -->
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i>Online
+        Profiles {{ sharedData?.getOnlinedata }}</h3>
+    </div>
+    <!-- [matchUserList]="matchOnlineUserList" [requiredApiCall]="false" -->
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="byCastgetOnlinedata"
+      [link]="'byCastgetOnlinedata'"></app-recommended-matches-profile>
+  </div>
+
+  <div class="mt-4 mt-md-4">
+    <!-- <div class="mb-3 text-center">
+              <span class="h6 mb-0 px-4 py-2 bg-branding text-white rounded-pill text-uppercase">Premium
+                    Profiles</span>
+        </div> -->
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Premium
+        Profiles{{ sharedData?.premium_matches }}</h3>
+    </div>
+    <!-- [matchUserList]="matchSportlightList" [requiredApiCall]="false" -->
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="byCastpremimusMatches"
+      [link]="'byCastpremimusMatches'"></app-recommended-matches-profile>
+
+  </div>
+
+  <div class="mt-4 mt-md-4">
+    <!-- <div class="mb-3 text-center">
+              <span class="h6 mb-0 px-4 py-2 bg-branding text-white rounded-pill text-uppercase">Recently
+                    Joined Profiles</span>
+        </div> -->
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Recently
+        Joined Profiles {{ sharedData?.RecentlyJoinedMatches }}</h3>
+      <!--  -->
+    </div>
+    <!-- [matchUserList]="matchSportlightList" [requiredApiCall]="false" -->
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="byCastRecentlyJoinedMatches"
+      [link]="'byCastRecentlyJoinedMatches'"></app-recommended-matches-profile>
+
+  </div>
+</ng-container>
+
+<ng-container *ngIf="third">
+
+  <div>
+
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Recommended
+        Matches </h3>
+    </div>
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="byOtherCastmatchesforindivisual"
+      [link]="'byOtherCastmatchesforindivisual'"></app-recommended-matches-profile>
+  </div>
+
+  <div class="mt-4 mt-md-4">
+    <!-- <div class="mb-3 text-center">
+                <span class="h6 mb-0 px-4 py-2 bg-branding text-white rounded-pill text-uppercase">Spotlight
+                      Profiles</span>
+          </div> -->
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Spotlight
+        Profiles {{ sharedData?.spotlight }}</h3>
+    </div>
+    <app-recommended-matches-profile [sectionNameRequired]="false" [sectionNameRequired]="false"
+      apiName="byOtherCastgetSpotlightdata" [link]="'byOtherCastgetSpotlightdata'"></app-recommended-matches-profile>
+
+  </div>
+
+  <div class="mt-4 mt-md-4">
+    <!-- <div class="mb-3 text-center">
+                <span class="h6 mb-0 px-4 py-2 bg-branding text-white rounded-pill text-uppercase">Online
+                      Profiles</span>
+          </div> -->
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i>Online
+        Profiles {{ sharedData?.getOnlinedata }}</h3>
+    </div>
+    <!-- [matchUserList]="matchOnlineUserList" [requiredApiCall]="false" -->
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="byOtherCastgetOnlinedata"
+      [link]="'byOtherCastgetOnlinedata'"></app-recommended-matches-profile>
+  </div>
+
+  <div class="mt-4 mt-md-4">
+    <!-- <div class="mb-3 text-center">
+                <span class="h6 mb-0 px-4 py-2 bg-branding text-white rounded-pill text-uppercase">Premium
+                      Profiles</span>
+          </div> -->
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Premium
+        Profiles{{ sharedData?.premium_matches }}</h3>
+    </div>
+    <!-- [matchUserList]="matchSportlightList" [requiredApiCall]="false" -->
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="byOtherCastpremimusMatches"
+      [link]="'byOtherCastpremimusMatches'"></app-recommended-matches-profile>
+
+  </div>
+
+  <div class="mt-4 mt-md-4">
+    <!-- <div class="mb-3 text-center">
+                <span class="h6 mb-0 px-4 py-2 bg-branding text-white rounded-pill text-uppercase">Recently
+                      Joined Profiles</span>
+          </div> -->
+    <div class="px-4 py-3 bg-branding text-white rounded">
+      <h3 class="h5 mb-0"><i class="fas fa-list"></i> Recently
+        Joined Profiles {{ sharedData?.RecentlyJoinedMatches }}</h3>
+      <!--  -->
+    </div>
+    <!-- [matchUserList]="matchSportlightList" [requiredApiCall]="false" -->
+    <app-recommended-matches-profile [sectionNameRequired]="false" apiName="byOtherCastRecentlyJoinedMatches"
+      [link]="'byOtherCastRecentlyJoinedMatches'"></app-recommended-matches-profile>
+
+  </div>
+</ng-container>
+<ng-container *ngIf="adv3?.length">
+  <div class="container " style="margin-bottom: 55px;" id="successStory">
+    <owl-carousel-o [options]="customOptionsadv">
+      <ng-container *ngFor="let htmlmaritalstatus of adv3">
+        <ng-template carouselSlide>
+          <div class="item">
+            <div class="client-img1">
+              <img [src]="urladv+htmlmaritalstatus?.image" class="img-fluid client-img-custom1" style="width: 98%;"
+                alt="client story">
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+</ng-container>

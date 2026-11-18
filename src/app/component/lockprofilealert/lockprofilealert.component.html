@@ -1,0 +1,23 @@
+<div class="modal-content">
+  <button mat-icon-button class="close-button" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="container text-center">
+    <div class="alert alert-warning" role="alert">
+      This account is currently locked for selected members. Please contact the support team to access this number.
+    </div>
+    <div ngbDropdown class="dropdown d-inline-block">
+      <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton" ngbDropdownToggle>
+        Contact Options
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" ngbDropdownMenu>
+        <a class="dropdown-item" href="tel:{{ admindata?.phone_no }}"><i class="bi bi-telephone"></i> Call</a>
+        <a class="dropdown-item" href="https://wa.me/{{ admindata?.whatsapp_no }}"><i class="bi bi-whatsapp"></i>
+          WhatsApp</a>
+        <a class="dropdown-item" href="mailto:{{ admindata?.gmail_id }}"><i class="bi bi-envelope"></i> Send Email</a>
+        <a class="dropdown-item" href="javascript:void(0);" (click)="requestKundali()"><i class="bi bi-chat-dots"></i>
+          Send Request</a>
+      </div>
+    </div>
+  </div>
+</div>

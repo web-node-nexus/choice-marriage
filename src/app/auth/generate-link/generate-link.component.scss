@@ -1,0 +1,22 @@
+/* Styles for the Reset Link Expired Message */
+.reset-link-expired {
+  background-color: #f8d7da; /* Red background color */
+  color: #721c24; /* Dark red text color */
+  padding: 20px;
+  border: 1px solid #f5c6cb; /* Darker red border */
+  border-radius: 5px; /* Rounded corners */
+  margin: 20px; /* Add some margin for spacing */
+
+  img{
+    border-radius: 12px;
+  }
+}
+
+.reset-link-expired h2 {
+  margin-top: 0; /* Remove default margin for heading */
+}
+
+.reset-link-expired p {
+  margin-bottom: 0; /* Remove default margin for paragraph */
+}
+

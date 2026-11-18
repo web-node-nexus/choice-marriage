@@ -1,0 +1,33 @@
+<!-- <div class="body"> -->
+<div class="container p-4 text-center"
+    style="border-radius: 12px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+    <p class="text-danger m-2 btn btn-label-danger">This is a private account you need to request for access this
+        profile</p>
+    <div class="text-center">
+
+        <img [src]="imgURL+request_profile?.user_profile_image"
+            onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/female-avatar-place.png';"
+            class="rounded-circlef" width="150" height="150">
+    </div>
+
+    <p class="text-center mb-3 truncate-text  btn btn-label-success">{{request_profile?.user_id}}
+    </p>
+
+    <ng-container *ngIf="!showRequest">
+        <i class="checkmark">✓</i>
+        <h1>Success</h1>
+        <p>We received your request;<br /> <a [routerLink]='"/v1/member-profile/"+request_profile?.user_id'
+                class="btn btn-label-success" style="cursor: pointer;">View Status</a></p>
+    </ng-container>
+    <!-- HTML !-->
+    <div>
+        <button class="button-34" role="button" [hidden]="!showRequest" (click)="sendRequest()"><i
+                class="fa-regular fa-paper-plane me-2"></i>Send Request</button>
+    </div>
+
+    <div class="mt-3">
+        <button class="button-3" role="button" routerLink="/"><i
+                class="fa-solid fa-house me-2"></i>Go To Home</button>
+    </div>
+</div>
+<!-- </div> -->

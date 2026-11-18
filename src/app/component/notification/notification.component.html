@@ -1,0 +1,101 @@
+<!-- <div class="container" *ngIf="!notification_loader">
+  <div class="notifications">
+    <ng-container *ngFor="let notification of notificationData">
+      <div class="notification "  [ngClass]="notification.notify_status_view?'alert alert-light':'alert alert-danger'">
+    
+        <img class="profile-picture" [src]="imageURL+notification.user_profile_image" alt="User Profile" (click)="viewNotification(notification)">
+        <div class="notification-content">
+          <p class="m-0"><strong>{{notification.user_fname}}&nbsp;{{notification.user_lname}}</strong> </p>
+          <p class="m-0">{{notification.notify_desc}}</p>
+          <span class="notification-time">{{notification.notify_created_date_time |date:'medium'}}</span>
+        </div>
+        <span class="remove-icon" (click)="remove(notification)"><i class="fa-solid fa-xmark fa-lg text-danger"></i></span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="notificationData.length==0">
+    
+      <div class="alert alert-secondary">
+        No Notification Found
+      </div>
+    </ng-container>
+
+  </div>
+</div> -->
+
+
+
+<div class="container p-0">
+  <ul class="list-group list-group-flush">
+    <ng-container *ngFor="let notification of notificationData;trackBy: trackByFunction;let i=index">
+      <li class="list-group-item p-2 m-2 "
+        style=" box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 12px;">
+        <div class="d-flex align-items-center">
+          <div class="">
+            <img [src]="imageURL+notification.user_profile_image" alt="User Profile"
+              class="img-fluid rounded profile-picture" width="50" height="50" />
+          </div>
+          <div>
+            <!-- <span class="text-muted"><strong>{{notification.user_fname |uppercase}}&nbsp;{{notification.user_lname
+                |uppercase}}</strong></span> -->
+            <span class="text-muted truncate-text" [pTooltip]="notification.notify_by_id"><i
+                class="fa-regular fa-user me-1"></i><strong> {{ notification?.notify_by_id
+                }}</strong></span>
+
+            <div class="text-grey fs-12">
+              <span class="truncate-text" [pTooltip]="notification.notify_desc"> <i
+                  class="fa-regular fa-comments me-2"></i>{{notification.notify_desc |uppercase}} </span>
+              <span class="d-block text-danger fa-fade"><i class="fa-regular fa-clock me-2"></i>
+                {{notification.notify_created_date_time | timedifference}}</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="flex md:justify-content-end justify-content-end mt-2">
+          <button *ngFor="let action of generateAction(notification.notify_type)" [hidden]="checkActionisTaken(notification,action.name)" class="btn  me-2 btn-sm"
+            [ngClass]="action.btnCls" (click)="handleButtonClick(action,notification)">
+            <i class="me-2" [ngClass]="action.iconCls"></i> {{ action.name }}
+          </button>
+          <button class="btn btn-outline-danger me-2 btn-sm" (click)="remove(notification,i)">
+            <i class="fa-solid fa-xmark me-2"></i> Remove
+          </button>
+         
+
+        </div>
+        <span class="remove-icon" (click)="remove(notification,i)">
+          <span class="remove-icon"><i
+              [ngClass]="notification.notify_status_view?'fa-regular fa-eye text-success':'fa-regular fa-eye-slash fa-beat-fade text-danger'"></i></span>
+
+        </span>
+
+      </li>
+    </ng-container>
+  </ul>
+  <ng-container *ngIf="!notification_loader &&notificationData.length==0">
+    <app-no-data-availble></app-no-data-availble>
+  </ng-container>
+  <div class="notification-loader-container" *ngIf="notification_loader">
+    <div class="notification-loader">
+      <div class="loader"></div>
+      <p>Loading Notification...</p>
+    </div>
+  </div>
+</div>
+
+
+
+<ng-container *ngIf="!notification_loader;else spinningRefeshButton">
+
+  <button class="btn btn-primary btn-sticky" (click)="refresh()" >
+    <i class="fas fa-sync-alt"></i>
+    <span class="btn-text ms-2">Refresh</span>
+  </button>
+
+</ng-container>
+
+<ng-template #spinningRefeshButton>
+  <button class="btn btn-primary btn-sticky" (click)="refresh()" disabled>
+    <i class="fas fa-sync-alt fa-spin"></i>
+
+    <span class="btn-texts ms-2">Refresh ...</span>
+  </button>
+</ng-template>

@@ -1,0 +1,78 @@
+
+<div class="container mb-3" *ngIf="true">
+  <h2 class="text-success text-center mb-3"></h2>
+  <!-- <div class="px-4 py-3 bg-branding text-white rounded" href="#">
+    <h3 class="h5 mb-0"><i class="fa-solid fa-circle-check me-2"></i>My Messages</h3>
+  </div> -->
+  <div>
+    <ul class="nav nav-fill nav-underline justify-content-around mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link text-black w-100 active" id="pills-home-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+          Read Mesages</button>
+      </li>
+      <!-- <li class="nav-item" role="presentation">
+        <button class="nav-link text-orange w-100" id="pills-contact-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
+          <i class="fas fa-comment-dots icon-dot me-2"></i>Unread Mesages</button>
+      </li> -->
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <ul class="list-group list-group-flush">
+          <ng-container *ngFor="let connection of total_connection |fillter :['user_fname','user_lname']:filterText">
+            <li class="list-group-item p-2" [routerLink]="'/chat/'+connection.connection_id  "
+              style=" box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin: 2px; border-radius: 12px;">
+              <div class="d-flex align-items-center">
+                <div class="me-2">
+                  <img [src]="'https://choicemarriage.com/storage/'+connection.user_profile_image"
+                    class="img-fluid rounded profile-picture" width="50" height="50" />
+                </div>
+                <div>
+                  <span class="fw-bold">{{connection?.user_ID}}</span>
+                  <div class="text-grey fs-12">
+                    <span>{{connection.user_employed_In |uppercase}}</span>
+                    <span class="ms-2">{{connection.user_dob |age}} Years</span>
+                  </div>
+                  <div class="text-grey fs-12"> {{connection.user_religion |uppercase}}, {{connection.user_state
+                    |uppercase}}, {{connection.user_country |uppercase}}</div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-outline-success me-2 py-1 px-3">View</button>
+              </div>
+            </li>
+          </ng-container>
+
+        </ul>
+      </div>
+      <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+        <ul class="list-group list-group-flush">
+          <ng-container *ngFor="let connection of total_connection |fillter :['user_fname','user_lname']:filterText">
+            <li class="list-group-item p-2" [routerLink]="'/chat/'+connection.connection_id  "
+              style=" box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin: 2px; border-radius: 12px;">
+              <div class="d-flex align-items-center">
+                <div class="me-2">
+                  <img [src]="'https://choicemarriage.com/storage/'+connection.user_profile_image"
+                    class="img-fluid rounded profile-picture" width="50" height="50" />
+                </div>
+                <div>
+                  <span class="fw-bold">{{connection.user_fname}}&nbsp;{{connection.user_lname}}</span>
+                  <div class="text-grey fs-12">
+                    <span>{{connection.user_employed_In |uppercase}}</span>
+                    <span class="ms-2">{{connection.user_dob |age}} Years</span>
+                  </div>
+                  <div class="text-grey fs-12"> {{connection.user_religion |uppercase}}, {{connection.user_state
+                    |uppercase}}, {{connection.user_country |uppercase}}</div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-outline-success me-2 py-1 px-3">View</button>
+              </div>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

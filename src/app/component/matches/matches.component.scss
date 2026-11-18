@@ -1,0 +1,26 @@
+.cm-matches {
+  padding-bottom: 2rem;
+}
+
+.cm-matches__avatar {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+}
+
+.cm-matches__meta .fw-bold {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.cm-matches__empty {
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  color: #64748b;
+  font-weight: 500;
+}

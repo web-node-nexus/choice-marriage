@@ -1,0 +1,302 @@
+<div class="cm-reg font-segeo">
+  <div class="cm-reg__intro">
+    <p class="cm-reg__eyebrow">Create your profile</p>
+    <h2 class="cm-reg__title">Join Patarabibaha</h2>
+    <p class="cm-reg__sub">Share a few details to begin a respectful, guided matchmaking journey.</p>
+  </div>
+
+  <form #registerFormData="ngForm" (ngSubmit)="onSubmit(registerFormData)" class="cm-reg__form" novalidate>
+    <section class="cm-reg__section">
+      <header class="cm-reg__section-head">
+        <span>01</span>
+        <h3>Personal details</h3>
+      </header>
+
+      <div class="cm-reg__grid cm-reg__grid--2">
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="name">First name</label>
+          <input ngModel type="text" name="fname" id="name" autocomplete="given-name" required
+            placeholder="Enter first name" class="cm-reg__control form-control">
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['fname']?.invalid && (registerFormData.controls['fname']?.touched || formSubmitted)">
+            First name is required.
+          </div>
+        </div>
+
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="lname">Last name</label>
+          <input ngModel type="text" name="lname" id="lname" autocomplete="family-name" required
+            placeholder="Enter last name" class="cm-reg__control form-control">
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['lname']?.invalid && (registerFormData.controls['lname']?.touched || formSubmitted)">
+            Last name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="cm-reg__grid cm-reg__grid--2">
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="usermaritalstatus">Marital status</label>
+          <select ngModel id="usermaritalstatus" name="usermaritalstatus" (change)="showchildpart($event)"
+            class="cm-reg__control one form-input" required>
+            <option value="" disabled selected>Select marital status</option>
+            <option *ngFor="let value of maritalOptions" [value]="value.value">{{ value.name }}</option>
+          </select>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['usermaritalstatus']?.invalid && (registerFormData.controls['usermaritalstatus']?.touched || formSubmitted)">
+            Select marital status.
+          </div>
+        </div>
+
+        <div class="cm-reg__field" *ngIf="childshowvar">
+          <label class="cm-reg__label" for="userchildstates">Number of children</label>
+          <select ngModel id="userchildstates" name="userchildstates" class="cm-reg__control one form-input" required>
+            <option value="" disabled selected>Select number of children</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+          </select>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['userchildstates']?.invalid && (registerFormData.controls['userchildstates']?.touched || formSubmitted)">
+            Select number of children.
+          </div>
+        </div>
+      </div>
+
+      <div class="cm-reg__grid cm-reg__grid--2">
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="gender">Gender</label>
+          <select ngModel id="gender" name="gender" #gendervalue class="cm-reg__control one form-input" required
+            (change)="profilechange(gendervalue.value)">
+            <option value="" disabled selected>Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['gender']?.invalid && (registerFormData.controls['gender']?.touched || formSubmitted)">
+            Select gender.
+          </div>
+        </div>
+
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="profileType">Profile created for</label>
+          <select ngModel id="profileType" name="profileType" class="cm-reg__control one form-input" required>
+            <option value="" disabled hidden>Profile created for</option>
+            <option *ngFor="let value of Frofilefor" [value]="value.name">{{ value.name }}</option>
+          </select>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['profileType']?.invalid && (registerFormData.controls['profileType']?.touched || formSubmitted)">
+            Select profile created for.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cm-reg__section">
+      <header class="cm-reg__section-head">
+        <span>02</span>
+        <h3>Community background</h3>
+      </header>
+
+      <div class="cm-reg__grid cm-reg__grid--2">
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="motherTongueId">Mother tongue</label>
+          <select id="motherTongueId" ngModel name="user_mother_toungh" class="cm-reg__control one form-input" required>
+            <option value="" disabled hidden>Select mother tongue</option>
+            <option *ngFor="let value of mothertonguename" [value]="value.name">{{ value.name }}</option>
+          </select>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['user_mother_toungh']?.invalid && (registerFormData.controls['user_mother_toungh']?.touched || formSubmitted)">
+            Select mother tongue.
+          </div>
+        </div>
+
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="religionId">Religion</label>
+          <select id="religionId" name="religionId" ngModel class="cm-reg__control one form-input" required>
+            <option value="" hidden>Select religion</option>
+            <option *ngFor="let value of religionname" [value]="value.name">{{ value.name }}</option>
+          </select>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['religionId']?.invalid && (registerFormData.controls['religionId']?.touched || formSubmitted)">
+            Select religion.
+          </div>
+        </div>
+      </div>
+
+      <div class="cm-reg__grid cm-reg__grid--2">
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="casteId">Caste</label>
+          <select id="casteId" name="casteId" ngModel #castname (change)="subCastFilter(castname.value)"
+            class="cm-reg__control one form-input" required>
+            <option value="" hidden>Select caste</option>
+            <option *ngFor="let value of castnname" [value]="value.name">{{ value.name }}</option>
+          </select>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['casteId']?.invalid && (registerFormData.controls['casteId']?.touched || formSubmitted)">
+            Select caste.
+          </div>
+        </div>
+
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="SubCaste">Sub caste</label>
+          <select id="SubCaste" ngModel name="SubCaste" class="cm-reg__control one form-input" required>
+            <option value="" hidden>Select sub caste</option>
+            <option *ngFor="let value of subcastnname" [value]="value.name">{{ value.name }}</option>
+          </select>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['SubCaste']?.invalid && (registerFormData.controls['SubCaste']?.touched || formSubmitted)">
+            Select sub caste.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cm-reg__section">
+      <header class="cm-reg__section-head">
+        <span>03</span>
+        <h3>Contact details</h3>
+      </header>
+
+      <div class="cm-reg__phone">
+        <div class="cm-reg__field cm-reg__field--code">
+          <label class="cm-reg__label" for="countryIdw">Code</label>
+          <select [(ngModel)]="defultcountrycodew" id="countryIdw" name="countryIdw"
+            class="cm-reg__control one form-input" required>
+            <option value="" disabled>Select</option>
+            <ng-container *ngFor="let item of countryCodes">
+              <option [value]="item.dial_code">{{ item.name }}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="cm-reg__field cm-reg__field--grow">
+          <label class="cm-reg__label" for="WhatsApp">WhatsApp number</label>
+          <input ngModel id="WhatsApp" name="WhatsApp" type="tel" autocomplete="tel" placeholder="10-digit WhatsApp number"
+            pattern="^\d{10}$" class="cm-reg__control RegPhone form-input" required>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['WhatsApp']?.invalid && (registerFormData.controls['WhatsApp']?.touched || formSubmitted)">
+            WhatsApp number (10 digits required)
+          </div>
+        </div>
+      </div>
+
+      <div class="cm-reg__phone">
+        <div class="cm-reg__field cm-reg__field--code">
+          <label class="cm-reg__label" for="countryId">Code</label>
+          <select [(ngModel)]="defultcountrycode" id="countryId" name="countryId"
+            class="cm-reg__control one form-input" required>
+            <option value="" disabled>Select</option>
+            <ng-container *ngFor="let item of countryCodes">
+              <option [value]="item.dial_code">{{ item.name }}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="cm-reg__field cm-reg__field--grow">
+          <label class="cm-reg__label" for="phone">Phone number</label>
+          <input ngModel id="phone" name="phone" type="tel" autocomplete="tel" placeholder="10-digit phone number"
+            pattern="^\d{10}$" class="cm-reg__control RegPhone form-input" required>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['phone']?.invalid && (registerFormData.controls['phone']?.touched || formSubmitted)">
+            Phone number (10 digits required)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cm-reg__section">
+      <header class="cm-reg__section-head">
+        <span>04</span>
+        <h3>Date of birth &amp; account</h3>
+      </header>
+
+      <div class="cm-reg__dob">
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="day1">Day</label>
+          <select class="cm-reg__control shadow-sm" id="day1" ngModel name="day" required>
+            <option value="" selected>Day</option>
+            <ng-container *ngFor="let item of dayOption">
+              <option [value]="item">{{ item }}</option>
+            </ng-container>
+          </select>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['day']?.invalid && (registerFormData.controls['day']?.touched || formSubmitted)">
+            Select date.
+          </div>
+        </div>
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="day2">Month</label>
+          <select class="cm-reg__control shadow-sm" id="day2" ngModel name="month" required>
+            <option value="" selected>Month</option>
+            <ng-container *ngFor="let item of months">
+              <option [value]="item.value">{{ item.display }}</option>
+            </ng-container>
+          </select>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['month']?.invalid && (registerFormData.controls['month']?.touched || formSubmitted)">
+            Select month.
+          </div>
+        </div>
+        <div class="cm-reg__field">
+          <label class="cm-reg__label" for="day3">Year</label>
+          <select class="cm-reg__control shadow-sm" id="day3" ngModel name="year" required
+            (change)="validateDoB(registerFormData)">
+            <option value="" selected>Year</option>
+            <ng-container *ngFor="let item of year">
+              <option [value]="item">{{ item }}</option>
+            </ng-container>
+          </select>
+          <div class="cm-reg__error"
+            *ngIf="registerFormData.controls['year']?.invalid && (registerFormData.controls['year']?.touched || formSubmitted)">
+            Select year.
+          </div>
+        </div>
+      </div>
+
+      <div class="cm-reg__field">
+        <label class="cm-reg__label" for="email">Email address</label>
+        <input ngModel id="email" name="email" type="email"
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" autocomplete="email"
+          placeholder="name@example.com" class="cm-reg__control form-input" required>
+        <div class="cm-reg__error"
+          *ngIf="registerFormData.controls['email']?.invalid && (registerFormData.controls['email']?.touched || formSubmitted)">
+          Email is required.
+        </div>
+      </div>
+
+      <div class="cm-reg__field">
+        <label class="cm-reg__label" for="password">Password</label>
+        <div class="cm-reg__password">
+          <input id="password" ngModel name="password" autocomplete="new-password" placeholder="Minimum 4 characters"
+            min="4" [type]="hide ? 'password' : 'text'" pattern="^.{4,}$" class="cm-reg__control form-input" required>
+          <button type="button" class="cm-reg__eye" (click)="hide = !hide" [attr.aria-label]="hide ? 'Show password' : 'Hide password'">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </div>
+        <div class="cm-reg__error"
+          *ngIf="registerFormData.controls['password']?.invalid && (registerFormData.controls['password']?.touched || formSubmitted)">
+          Password required
+        </div>
+      </div>
+    </section>
+
+    <div class="cm-reg__terms">
+      <label class="cm-reg__check" for="terms">
+        <input id="terms" type="checkbox" ngModel name="tc" (change)="change($event.target)"
+          [ngModel]="termsChecked" autocomplete="off" class="form-checkbox">
+        <span>
+          I accept the
+          <a href="/terms_conditions" target="_blank" rel="noopener">Terms and Conditions</a>
+        </span>
+      </label>
+    </div>
+
+    <button type="submit" class="cm-reg__submit btn next">
+      Create free account
+    </button>
+  </form>
+</div>

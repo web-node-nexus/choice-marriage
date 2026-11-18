@@ -1,0 +1,53 @@
+<div class="container-fluid w-95 pb-5">
+  <div class="row gx-0 gx-lg-3 mt-3">
+    <div class="col-12 col-lg-9">
+      <h2 class="text-danger text-center text-uppercase mb-3">Upload Photo</h2>
+      <form class="mt-4 text-center" (click)="loadUploadComponent()">
+        <label for="uploadphoto" class="btn btn-lg btn-danger upload-btn">
+          Upload Photo
+          <i class="bi bi-upload"></i>
+        </label>
+        <div class="m-3">
+          <small>Note: Photo must be in .JPG, .GIF, or .PNG format, not larger than 3 MB.</small>
+        </div>
+      </form>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+        <div *ngFor="let file of uploadedFile" class="image-holder">
+          <img class="img-thumbnail mb-3" [src]="file.user_profile_images" alt="Uploaded Image">
+          <div class="d-flex justify-content-between">
+            <ng-container *ngIf="file.user_profile_images_for_approval == 1">
+              <ng-container *ngIf="!file.user_profile_images.endsWith(profileimg)">
+                <div>
+                  <button class="btn btn-primary btn-sm mb-2 w-100"
+                    (click)="setAsProfilePicture(file.user_profile_images)">
+                    <i class="bi bi-person-circle me-2"></i> Make Profile Picture
+                  </button>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="file.user_profile_images.endsWith(profileimg)">
+                <div>
+                  <button class="btn btn-success btn-sm mb-2 w-100">
+                    <i class="bi bi-check-circle me-2"></i> Profile Picture
+                  </button>
+                </div>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="file.user_profile_images_for_approval == 0">
+              <div>
+                <button class="btn btn-primary btn-sm mb-2 w-100">
+                  <i class="bi bi-x-circle me-2"></i> Not Approved
+                </button>
+              </div>
+            </ng-container>
+            <div>
+              <button class="btn btn-danger btn-sm mb-2 w-100" (click)="deletePhoto(file.id)">
+                <i class="bi bi-trash me-2"></i> Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

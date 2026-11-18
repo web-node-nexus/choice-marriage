@@ -1,0 +1,40 @@
+<div class="container cm-matches">
+  <div class="cm-matches__head px-4 py-3 bg-branding text-white rounded">
+    <h3 class="h5 mb-0">{{ matchTaitel }} {{ '[' + matchUserList.length + ']' }}</h3>
+  </div>
+
+  <ng-container *ngIf="matchUserList.length > 0">
+    <ul class="list-group list-group-flush cm-matches__list mt-3">
+      <li class="list-group-item px-3 mb-2" *ngFor="let profile of matchUserList">
+        <div class="d-flex align-items-center">
+          <div class="me-3">
+            <img [src]="profile?.profileImageUrl" class="img-fluid rounded cm-matches__avatar" width="64" height="64" alt="profile" />
+          </div>
+          <div class="cm-matches__meta">
+            <span class="fw-bold">{{ profile?.user_id || profile?.auth_ID }}</span>
+            <div class="text-grey fs-12">
+              <span>{{ profile?.user_occupation }}</span>
+              <span class="ms-2">{{ profile?.user_dob | age }} Years, {{ hight(profile?.user_height) }},</span>
+            </div>
+            <div class="text-grey fs-12">
+              {{ profile?.user_caste }}, {{ profile?.user_Permanent_state }}, {{ profile?.user_Permanent_country }}
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end flex-wrap gap-2 mt-3">
+          <button class="btn btn-success btn-sm px-3" (click)="intialtedChat(profile)">Send Message</button>
+          <button class="btn btn-success btn-sm px-3" (click)="intialtedChat(profile)">Chat Now</button>
+          <button class="btn btn-success btn-sm px-3" [routerLink]="'/v1/member-profile/' + profile?.user_id">
+            View Profile
+          </button>
+        </div>
+      </li>
+    </ul>
+  </ng-container>
+
+  <ng-container *ngIf="matchUserList.length == 0">
+    <div class="cm-matches__empty text-center py-5">
+      <p class="mb-0">No matching profiles found right now. Try another search category.</p>
+    </div>
+  </ng-container>
+</div>

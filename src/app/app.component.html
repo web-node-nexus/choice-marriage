@@ -1,0 +1,12 @@
+<ngx-loading-bar [height]="'5px'" [includeSpinner]="false"></ngx-loading-bar>
+<div class="coustom-margin"></div>
+<block-ui>
+  <app-nav-bar [sidebarVisible]="sidebarVisible"></app-nav-bar>
+  <router-outlet></router-outlet>
+  <div>
+    <div style="height: 70px;">
+    </div>
+  </div>
+  <app-footer *ngIf="display_fottor()"></app-footer>
+  <app-buttom-navigation-bar (sidebarVisibleOption)="openProfile($event)" ></app-buttom-navigation-bar>
+</block-ui>

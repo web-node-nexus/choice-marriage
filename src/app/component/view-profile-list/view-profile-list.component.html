@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="px-4 py-3 bg-branding text-white rounded">
+        <h3 class="h5 mb-0"><i class="fa-solid fa-circle-check"></i> {{sectionTitel}}</h3>
+    </div>
+    <ng-container *ngIf="profileList.length>0">
+        <div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item px-2 mb-2 " *ngFor="let profile of profileList"
+                    style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+                    <div class="d-flex align-items-center">
+                        <div class="me-2">
+                            <img [src]="profile?.profile_image_url" class="img-fluid rounded" width="50" height="50" />
+                        </div>
+                        <div>
+                            <span class="fw-bold">{{profile?.profile_id }}</span>
+                            <div class="text-grey fs-12">
+                                <!-- <span>{{profile?.user_occupation}}</span> -->
+                                <!-- <span class="ms-2">{{profile?.user_dob |age}} Years, 5ft 1in,</span> -->
+                            </div>
+                            <!-- <div class="text-grey fs-12"> {{profile?.user_caste}}, {{profile?.user_Permanent_state}}, {{profile?.user_Permanent_country}}</div> -->
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-2">
+                        <button class="btn btn-success btn-sm me-1 me-md-3 p-1 px-md-4"
+                            (click)="intialtedChat(profile)">Send Message</button>
+                        <!-- <button class="btn btn-success btn-sm me-1 me-md-3 p-1 px-md-4"  onclick="redirectToMessage(1)">Call Now</button> -->
+                        <button class="btn btn-success btn-sm me-1 me-md-3 p-1 px-md-4"
+                            (click)="intialtedChat(profile)">Chart Now</button>
+                        <button class="btn btn-success btn-sm me-1 me-md-3 p-1 px-md-4"
+                            [routerLink]="'/v1/member-profile/'+profile?.profile_id">
+                            View Profile
+                        </button>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="profileList.length==0">
+        <app-no-data-availble></app-no-data-availble>
+    </ng-container>
+</div>

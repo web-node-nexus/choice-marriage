@@ -1,0 +1,56 @@
+<div style="background-color: green;padding: 15px;" class="mt-3">
+    <div class="container">
+
+        <div class="flex-container">
+            <div class="flex-item" routerLinkActive="flex-item-active" routerLink="/v1/search_match" (click)="generateApiEndPoint('matchesforindivisual')">
+                <span>All Matches</span>
+            </div>
+            <div class="flex-item" routerLink="/v1/search_match" (click)="generateApiEndPoint('matchesforindivisual')" >
+                <span>All Caste Matches</span>
+            </div>
+            <div class="flex-item"  routerLinkActive="flex-item-active" routerLink="/v1/search_match/cast_matches"  (click)="generateApiEndPoint('cast_matches')">
+                <span>Your Caste Matches</span>
+            </div>
+            <div class="flex-item"  routerLinkActive="flex-item-active" routerLink="/v1/search_match/premium_matches"
+                (click)="generateApiEndPoint('premium_matches')">
+                <span>Premium Matches</span>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div style="background-color: #fff;padding: 0px;" class="mt-3">
+    <div class="container">
+
+        <div class="flex-container-action">
+            <div class="flex-item-action">
+                <button class="button-29"
+                    style="background-image:radial-gradient(100% 100% at 100% 0, #5a7eff 0, #5870e9 100%)" role="button"
+                    routerLink="/acceptance">{{acceptanceRequestCount}}</button>
+                <p class="pt-3 text-muted">Acceptances Recived</p>
+            </div>
+            <div class="flex-item-action">
+                <button class="button-29" role="button"
+                    style="background-image:radial-gradient(100% 100% at 100% 0, #ff5a5a 0, #ff5454 100%)"
+                    routerLink="/ignore_profile_list">{{ignoreProfileCount}}</button>
+                <p class="pt-3 text-muted">My Ignore Profile List</p>
+            </div>
+            <div class="flex-item-action">
+                <button class="button-29" role="button"
+                    routerLink="/shortlisted_profile_list">{{shortlistedYourProfileCount}}</button>
+                <p class="pt-3 text-muted">Shortlisted Your Profile</p>
+            </div>
+            <div class="flex-item-action">
+                <button class="button-29" role="button" routerLink="/view_profile_list"
+                    style="background-image:radial-gradient(100% 100% at 100% 0, #e481de 0, #b11afc 100%)">{{viewMyprofileCount}}</button>
+                <p class="pt-3 text-muted">Viewed Your Profile</p>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>

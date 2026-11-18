@@ -1,0 +1,77 @@
+<ng-container *ngIf="!isLogin">
+  <footer class="cm-footer bg-branding text-white">
+    <div class="container w-95">
+      <div class="cm-footer__top">
+        <div class="cm-footer__brand">
+          <h3>Choice Marriage</h3>
+          <p>A refined space to meet the right person — with privacy, clarity, and lasting intention.</p>
+        </div>
+        <div class="cm-footer__links">
+          <a class="text-white text-decoration-none" routerLink="/privacy_policy">Privacy Policy</a>
+          <a class="text-white text-decoration-none" routerLink="/terms_conditions">Terms & Condition</a>
+          <a class="text-white text-decoration-none" routerLink="/about-us">About us</a>
+          <a class="text-white text-decoration-none" routerLink="/contact-us">Contact us</a>
+        </div>
+        <div class="social-icon-footer d-flex">
+          <a href="{{ Facebook }}" class="rounded-circle text-white text-center me-3" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="{{ Twitter }}" class="rounded-circle text-white text-center me-3" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="{{ YouTube }}" class="rounded-circle text-white text-center me-3" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="{{ Instagram }}" class="rounded-circle text-white text-center me-3" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/{{ whatsappthis }}?text=Need Help" class="rounded-circle text-white text-center me-3" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+      <div class="cm-footer__copy text-center">
+        <span class="fs-12">© Copyright {{ test.getFullYear() }} By Choice Marriage. All Rights Reserved.</span>
+      </div>
+    </div>
+  </footer>
+</ng-container>
+
+<ng-container *ngIf="isLogin && screenWidth > 425">
+  <footer class="cm-footer bg-branding text-white">
+    <div class="container w-95">
+      <div class="cm-footer__top">
+        <div class="cm-footer__brand">
+          <h3>Choice Marriage</h3>
+          <p>Continue your journey with confidence, care, and the right tools for a meaningful match.</p>
+        </div>
+        <div class="cm-footer__links">
+          <a class="text-white text-decoration-none" routerLink="/privacy_policy">Privacy Policy</a>
+          <a class="text-white text-decoration-none" routerLink="/terms_conditions">Terms & Condition</a>
+          <a class="text-white text-decoration-none" routerLink="/privacy-policy">Return policy</a>
+          <a class="text-white text-decoration-none" routerLink="/contact-us">Contact us</a>
+        </div>
+        <div class="social-icon-footer d-flex">
+          <a href="{{ Facebook }}" class="rounded-circle text-white text-center me-3" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="{{ Twitter }}" class="rounded-circle text-white text-center me-3" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="{{ YouTube }}" class="rounded-circle text-white text-center me-3" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="{{ Instagram }}" class="rounded-circle text-white text-center me-3" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/{{ whatsappthis }}?text=Need Help" class="rounded-circle text-white text-center me-3" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+      <div class="cm-footer__copy text-center">
+        <span class="fs-12">© Copyright {{ test.getFullYear() }} By Choice Marriage. All Rights Reserved.</span>
+      </div>
+    </div>
+  </footer>
+</ng-container>

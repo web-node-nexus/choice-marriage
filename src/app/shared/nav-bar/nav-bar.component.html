@@ -1,0 +1,360 @@
+<!-- navbar -->
+<div class="">
+  <nav class="navbar navbar-expand-lg bg-white  sticky top-0 z-10">
+    <div class="container-fluid px-xl-5">
+      <a class="navbar-brand" routerLink="/">
+        <img *ngIf="image" [src]="url+image" width="100" />
+        <img *ngIf="!image" src="../../../assets/images/logo.png" width="100" />
+      </a>
+      <button class="navbar-toggler border-0" (click)="borgerclicked()" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header py-0">
+          <a class="navbar-brand d-none d-lg-block" href="index.html">
+            <img src="images/logo.png" width="100" />
+          </a>
+          <button type="button" class="btn-close position-absolute" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1">
+            <ng-container *ngIf="isLogin">
+              <li class="nav-item position-relative ms-lg-3 navbar-profile mb-3">
+                <div class="col-12 mt-3 d-lg-none text-center">
+                  <div class="text-center">
+                    <!-- <img [src]="logoUrl+profile_image" [alt]="profile_image"> -->
+                    <img [src]="'https://choicemarriage.com/storage/'+profile_image"
+                      onerror="this.onerror=null;this.src='assets/img/border-male.gif'" alt="Profile Picture" width="80" height="80">
+                  </div>
+                  <div class="text-center navbar-profile-view-button">
+                    <button type="button" href="https://www.patarabibaha.com/my-profile"
+                      class="btn btn-sm bg-branding text-white px-4 rounded"> My Profile</button>
+                  </div>
+                  <div class="progressbar-title mt-2">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                        attr.aria-valuemax="{{persentage}}" [style]="'width:'+persentage+'%;'"></div>
+                    </div>
+
+                    <div class="progressbar-value fs-12 w-100 py-1 text-center rounded text-white py-2 my-2">
+                      <span class="fw-bold">{{persentage > 100 ? 100 : persentage }}</span>
+                      % Completed Profile
+                    </div>
+                  </div>
+                  <p class="px-3 mb-1 lh-sm">Update full profile to best matches</p>
+                  <span class="px-3">
+                    <div class="text-branding">{{authInfo?.profile_name}}</div>
+                    <span class="">({{authInfo?.profile_id}})</span>
+                  </span>
+                </div>
+              </li>
+
+
+              <li class="nav-item position-relative ms-lg-3">
+                <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+              </li>
+
+
+
+              <li class="nav-item position-relative ms-lg-3 dropdown">
+                <a class="nav-link position-relative dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Profile
+                </a>
+                <ul class="dropdown-menu py-0">
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/my-profile">
+                      View Profile</a>
+                  </li>
+                  <li class="border-bottom" *ngIf="false">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/my-profile">
+                      Edit Profile</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/chat">
+                      My Messages</a>
+                  </li>
+                  <!-- <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/my_expression">
+                      My Express Interest</a>
+                  </li> -->
+                  <!-- <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/upload_video">
+                      Upload Video</a>
+                  </li> -->
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/upload_photo">
+                      Upload Photo</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/upload-horoscope">
+                      Upload Horoscope</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/upload_id_proof">
+                      Upload ID Proof</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/upload_payment_slip">
+                      Upload Payment Slip</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item position-relative ms-lg-3 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Activity
+                </a>
+                <ul class="dropdown-menu py-0">
+                  <!-- <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/search_match/premium_matches">
+                      My Express Interest</a>
+                  </li> -->
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/activity/my_view_profile_list">
+                      I Viewed Profile</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/activity/who_view_my_profile_list">
+                      Viewed My Profile</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/contact/i_viewed">
+                      I Viewed Contact</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/contact/viewed_my_contact">
+                      Viewed My Contact</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/shortlisted_profile_list">
+                      Short Listed Profile</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/ignore_profile_list">
+                      Blocked Profile</a>
+                  </li>
+                  <!-- <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/search_match/premium_matches">
+                      Photo Request Received</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/search_match/premium_matches">
+                      Photo Request Sent</a>
+                  </li> -->
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/acceptance">
+                      Requested profile</a>
+                  </li>
+
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/like-profile">
+                      Like Profile</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item position-relative ms-lg-3 dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Matches
+                </a>
+                <ul class="dropdown-menu py-0">
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/search_match/recommend_matches">
+                      Recommended Matches</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/search_match/premium_matches">
+                      Premium Matches</a>
+                  </li>
+                  <!-- <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/search_match/premium_matches">
+                      Near By Me</a>
+                  </li> -->
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/search_match/premium_matches">
+                      Match of the day</a>
+                  </li>
+                  <li class="border-bottom" *ngIf="perfectshoe">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/search_match/Perfect_Match">
+                     Perfect Match</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item position-relative ms-lg-3 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Search
+                </a>
+                <ul class="dropdown-menu py-0">
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/quick-search">
+                      Quick Search</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/advance-search">
+                      Advance Search</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/keyword-search">
+                      Keyword Search</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2 fs-14" routerLink="/id-search">
+                      Id Search</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item position-relative ms-lg-3 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Membership
+                </a>
+                <ul class="dropdown-menu py-0">
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/my-plan">
+                      Current Plan with expiry Date</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/subscription/plan">
+                      Offer for you</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/subscription/plan">
+                      Coupon Offer</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/subscription/plan">
+                      Upgrade Plan</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2 fs-14" routerLink="/subscription/plan">
+                      Payment Options</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item position-relative ms-lg-3 dropdown">
+                <a class="nav-link position-relative dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Story
+                </a>
+                <ul class="dropdown-menu py-0">
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/success_story">
+                      View Success Story</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/add_success_story">
+                      Add Success Story</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item position-relative ms-lg-3 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Help?
+                </a>
+                <ul class="dropdown-menu py-0">
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/contact-us">
+                      Contact Us</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2 fs-14" routerLink="/contact-to-admin">
+                      Contact To Admin</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item position-relative ms-lg-3 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  {{authInfo?.profile_name}}
+                </a>
+                <ul class="dropdown-menu py-0 dropdown-menu-end">
+
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/change-password">
+                      Change Password</a>
+                  </li>
+                  <li class="border-bottom">
+                    <a class="dropdown-item py-2 fs-14" routerLink="/v1/delete-profile">
+                      Delete Profile</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2 fs-14" (click)="logout()">
+                      Logout</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item position-relative ms-lg-3">
+                <a class="nav-link " aria-current="page" routerLink="/notification"> <i class="pi pi-bell "
+                    style="font-size: 1.3rem" pBadge [value]="notificationCount" severity="danger"></i></a>
+
+              </li>
+
+            </ng-container>
+            <ng-container *ngIf="!isLogin">
+              <li class="nav-item position-relative ms-lg-3">
+                <a class="nav-link" aria-current="page" routerLink="/"
+                  >Home</a>
+              </li>
+              <li class="nav-item position-relative ms-lg-3">
+                <a class="nav-link " aria-current="page" routerLink="/subscription/plan"
+                  routerLinkActive="active">Membership</a>
+              </li>
+              <li class="nav-item position-relative ms-lg-3">
+
+                <a class="nav-link " routerLinkActive="active" aria-current="page" routerLink="/success_story">Success Stories</a>
+              </li>
+              <li class="nav-item position-relative ms-lg-3">
+
+                <a class="nav-link " aria-current="page" routerLink="/about-us">About us</a>
+              </li>
+              <li class="nav-item position-relative ms-lg-3">
+                <a class="nav-link " aria-current="page" routerLink="/contact-us" routerLinkActive="active">Contact
+                  us</a>
+              </li>
+              <li class="nav-item position-relative ms-lg-3">
+                <a class="nav-link " aria-current="page" routerLink="/auth/register" routerLinkActive="active">Register</a>
+              </li>
+              <li class="nav-item position-relative ms-lg-3">
+                <a class="nav-link " aria-current="page" routerLink="/auth/login" routerLinkActive="active">Login</a>
+              </li>
+              <li class="nav-item position-relative ms-lg-3 navbar-profile">
+                <div class="flex  space-x-3 ">
+                  <div>
+                    <p
+                      class="text-[8px] md:text-[11px] lg:text-[14px]  flex justify-center text-[#575556] font-semibold">
+                      Download our App</p>
+                    <div class="flex space-x-2 md:space-x-4">
+                      <div class="flex items-center justify-center">
+                        <a [href]="applicationlinkand"
+                          target="_blank" rel="noopener noreferrer">
+                          <img class="w-[5rem]  "
+                            src="data:image/png;base64,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"
+                            alt="">
+                        </a>
+                      </div>
+                      <div class="flex items-center justify-center">
+                        <a [href]="applicationlinkios" target="_blank" rel="noopener noreferrer">
+                          <img class="w-[5rem]"
+                            src="data:image/png;base64,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"
+                            alt="">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </li>
+
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- end of navbar -->

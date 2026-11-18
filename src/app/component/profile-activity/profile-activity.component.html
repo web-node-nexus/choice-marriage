@@ -1,0 +1,81 @@
+<div class="cm-sidebar-panel">
+    <div class="px-4 py-3 bg-branding text-white rounded" href="#">
+        <h3 class="h5 mb-0"><i class="fas fa-list"></i> List of Profile</h3>
+    </div>
+    <div class="list-group list-group-flush sidebar-list-profile rounded">
+        <a
+            class="list-group-item d-flex align-items-center justify-content-between py-3 fs-14 fw-medium">
+            <div class="d-flex align-items-center">
+                <div class="w-22">
+                    <img src="https://www.patarabibaha.com/assets/images/m-e-i.png" alt="" />
+                </div>
+                My Express Interest
+            </div>
+            <span>{{ Shortlistedprofile }}</span>
+        </a>
+        <a routerLink="activity/my_view_profile_list"
+            class="list-group-item d-flex align-items-center justify-content-between py-3 fs-14 fw-medium">
+            <div class="d-flex align-items-center">
+                <div class="w-22">
+                    <img src="https://www.patarabibaha.com/assets/images/i-v-p.png" alt="" />
+                </div>
+                I Viewed Profile
+            </div>
+            <span>{{ iviewedprofile }}</span>
+        </a>
+        <a routerLink="activity/who_view_my_profile_list"
+            class="list-group-item d-flex align-items-center justify-content-between py-3 fs-14 fw-medium">
+            <div class="d-flex align-items-center">
+                <div class="w-22">
+                    <img src="https://www.patarabibaha.com/assets/images/v-m-p.png" alt="" />
+                </div>
+                Viewed My Profile
+            </div><span>{{ viewedmyprofile }}</span>
+        </a>
+        <a routerLink="contact/i_viewed"
+            class="list-group-item d-flex align-items-center justify-content-between py-3 fs-14 fw-medium">
+            <div class="d-flex align-items-center">
+                <div class="w-22">
+                    <img src="https://www.patarabibaha.com/assets/images/i-v-c.png" alt="" />
+                </div>
+                I Viewed Contact
+            </div><span>{{ iviewedcontact }}</span>
+        </a>
+        <a routerLink="contact/viewed_my_contact"
+            class="list-group-item d-flex align-items-center justify-content-between py-3 fs-14 fw-medium">
+            <div class="d-flex align-items-center">
+                <div class="w-22">
+                    <img src="https://www.patarabibaha.com/assets/images/w-v-c.png" alt="" />
+                </div>
+                Viewed My Contact
+            </div><span>{{ ViewedMyContact }}</span>
+        </a>
+        <a routerLink="shortlisted_profile_list"
+            class="list-group-item d-flex align-items-center justify-content-between py-3 fs-14 fw-medium">
+            <div class="d-flex align-items-center">
+                <div class="w-22">
+                    <img src="https://www.patarabibaha.com/assets/images/s-l-p.png" alt="" />
+                </div>
+                Short Listed Profile
+            </div><span>{{ Shortlistedprofile }}</span>
+        </a>
+        <a routerLink="ignore_profile_list"
+            class="list-group-item d-flex align-items-center justify-content-between py-3 fs-14 fw-medium">
+            <div class="d-flex align-items-center">
+                <div class="w-22">
+                    <img src="https://www.patarabibaha.com/assets/images/b-p.png" alt="" />
+                </div>
+                Blocked Profile
+            </div><span>{{ BlockedProfile }}</span>
+        </a>
+        <a routerLink="like-profile"
+            class="list-group-item d-flex align-items-center justify-content-between py-3 fs-14 fw-medium">
+            <div class="d-flex align-items-center">
+                <div class="w-22">
+                    <img src="https://www.patarabibaha.com/assets/images/l-p.png" alt="" />
+                </div>
+                Like Profile
+            </div><span>{{ LikeProfile }}</span>
+        </a>
+    </div>
+</div>

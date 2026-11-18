@@ -1,0 +1,93 @@
+<div class="container">
+
+  <div class="mt-5">
+    <div class="p-4 text-center">
+      <i class="fa-solid fa-qrcode fa-2xl"></i>
+      <p class="text-center fw-bold fs-2">Please complete your payment by <span
+          class="text-danger fa-fade">scanning</span> this QR code</p>
+    </div>
+  </div>
+  <div class="mt-3 mb-3 ">
+    <p class="text-center fs-3 fw-bold text-muted">PLAN NAME</p>
+    <p class="text-center">
+      <strong class="text-muted ">
+        {{planInformation?.membership_plan_name}}</strong>
+    </p>
+    <p class="text-center">
+      <strong class="text-success ">
+        {{planInformation?.membership_plan_type}}</strong>
+    </p>
+    <ng-container *ngIf="planInformation">
+      <div class="plan-information-holder">
+
+        <div style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;padding: 15px;width: 350px;border-radius: 12px;">
+          <!-- <p class="text-center"><strong class="text-success">Price:
+                        {{planInformation?.membership_plan_amount |currency:'INR'}}</strong></p> -->
+
+
+          <div class="flex justify-content-center items-center mb-2 fs-5">
+            <!-- <strong class="text-success">Price: -->
+            <!-- </strong> -->
+            <span class="fw-bold text-danger">{{ getDiscountPercentage() |currency:'INR' }}</span>
+
+            <ng-container *ngIf="planInformation?.membership_plan_dicount != 0">
+              <span class="ml-2"><del class="text-muted fw-bold">{{planInformation?.membership_plan_amount
+                  |currency:'INR'}}</del></span>
+
+              <span class="ml-2">
+
+                <span class="text-[16px] sm:text-[18px] md:text-[18px] font-bold dicoute-percentagev text-success">(
+                  {{planInformation?.membership_plan_dicount}}%
+                  <!-- {{getDiscountPercentage()}}% -->
+                  OFF)</span></span>
+            </ng-container>
+          </div>
+          <ul class="features" style="border-radius: 12px; padding: 5px ;list-style:none ;">
+            <li class="true"><i class="fa-regular fa-square-check me-2" style="color: #39ac56;"></i> View
+              Profile :
+              {{planInformation?.membership_plan_visibility}}</li>
+            <li class="true"><i class="fa-regular fa-square-check me-2" style="color: #39ac56;"></i>Plan
+              Validity :
+              {{ planInformation?.membership_plan_validity_date}} days</li>
+            <li class="true"><i class="fa-regular fa-square-check me-2" style="color: #39ac56;"></i>View
+              Photo :
+              {{planInformation?.membership_plan_no_of_photo}}</li>
+            <li class="false"><i class="fa-regular fa-square-check me-2" style="color: #39ac56;"></i>Send
+              Message :
+              {{planInformation?.membership_plan_of_send_message}}</li>
+            <li class="false"><i class="fa-regular fa-square-check me-2" style="color: #39ac56;"></i>View
+              Contact :
+              {{planInformation?.membership_plan_no_of_contact}}</li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="text-center">
+    <div class="payment-img-holder">
+      <img [src]="qrcode" alt="" srcset="" width="350px">
+    </div>
+    <p class="text-danger"><strong> {{ name }} </strong></p>
+    <p class="text-danger"><strong> {{ upiid }} </strong></p>
+  </div>
+  <div class="mt-5">
+    <div class="p-4 text-center">
+      <i class="fa-solid fa-thumbs-up fa-2xl fa-bounce text-success"></i>
+      <p class="text-center fw-bold fs-2">After completing your payment, take a screenshot and send it.
+      </p>
+
+    </div>
+    <div class="contact-information">
+      <div>
+        <p><i class="fa-solid fa-phone"></i>&nbsp;<a href="tel:{{ phone_no }}">{{ phone_no }}</a></p>
+        <p><i class="fa-brands fa-whatsapp"></i>&nbsp;<a
+            href="https://wa.me/{{ whatsapp_no }}?text=Hi">{{whatsapp_no}}</a></p>
+        <p><i class="fa-regular fa-envelope"></i>&nbsp;<a href="mailto:{{gmail_id}}">{{gmail_id}}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+</div>

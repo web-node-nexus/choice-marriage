@@ -1,0 +1,207 @@
+.cm-steps {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(800px 360px at 10% 0%, rgba(190, 18, 60, 0.12), transparent 55%),
+    radial-gradient(700px 320px at 95% 15%, rgba(15, 118, 110, 0.1), transparent 50%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f6 100%);
+}
+
+.cm-steps__card {
+  width: min(640px, 100%);
+  padding: 2rem 1.75rem !important;
+  border-radius: 28px !important;
+  border: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-top: 3px solid #be123c !important;
+  background: #fff;
+  box-shadow: 0 28px 70px rgba(15, 23, 42, 0.12) !important;
+}
+
+.cm-steps__intro {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.cm-steps__eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #be123c;
+}
+
+.cm-steps__intro h2 {
+  margin: 0.45rem 0 0;
+  font-family: var(--font-display) !important;
+  font-size: clamp(1.55rem, 2.8vw, 2rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+
+.cm-steps__intro p {
+  margin: 0.55rem auto 0;
+  max-width: 38ch;
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.cm-steps__label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.cm-steps__block {
+  margin-bottom: 1.35rem;
+}
+
+.cm-steps__back {
+  margin-bottom: 0.75rem;
+  color: #be123c !important;
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+.cm-steps__actions {
+  margin-top: 1.5rem;
+}
+
+.cm-steps__btn,
+.button-24 {
+  width: 100%;
+  min-height: 50px;
+  border: 0 !important;
+  border-radius: 14px !important;
+  background: linear-gradient(135deg, #e11d48, #9f1239) !important;
+  color: #fff !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.92rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 14px 28px rgba(190, 18, 60, 0.28);
+}
+
+.cm-steps__btn:disabled,
+.button-24:disabled {
+  opacity: 0.55;
+  box-shadow: none;
+}
+
+.registation-contain-holder {
+  .radio-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    width: 100%;
+  }
+
+  .custom-radio input {
+    display: none;
+  }
+
+  .radio-btn {
+    margin: 0;
+    width: auto;
+    min-width: 108px;
+    height: 44px;
+    padding: 0 0.85rem;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    position: relative;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+
+  .radio-btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .hobbies-icon span {
+    padding: 0;
+    font-size: 0.82rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: #334155;
+  }
+
+  .radio-btn > i {
+    color: #fff;
+    background-color: #0f766e;
+    font-size: 11px;
+    position: absolute;
+    top: -10px;
+    right: -4px;
+    left: auto;
+    transform: scale(0.7);
+    border-radius: 999px;
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .radio-btn .hobbies-icon {
+    position: static;
+    width: auto;
+    transform: none;
+  }
+
+  .custom-radio input:checked + .radio-btn {
+    border-color: transparent;
+    background: linear-gradient(135deg, #0f766e, #14b8a6);
+    color: #fff;
+    box-shadow: 0 10px 22px rgba(15, 118, 110, 0.25);
+  }
+
+  .custom-radio input:checked + .radio-btn .hobbies-icon span {
+    color: #fff;
+  }
+
+  .custom-radio input:checked + .radio-btn > i {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .form1,
+  .form2,
+  .form3 {
+    display: none;
+    transition: all 0.1s ease-in;
+  }
+
+  .active-step {
+    display: block;
+    animation: cm-rise 0.35s ease both;
+  }
+}
+
+::ng-deep .cm-steps {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: rgba(15, 23, 42, 0.14);
+  }
+
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #be123c;
+  }
+}

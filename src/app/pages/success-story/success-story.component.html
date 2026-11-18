@@ -1,0 +1,82 @@
+<section class="cm-page cm-stories-page">
+  <div class="cm-page__hero">
+    <img src="assets/images/landing/cm-story.jpg" alt="Success stories at Choice Marriage" />
+    <div class="cm-page__hero-copy">
+      <p class="cm-page__kicker">Success Stories</p>
+      <h1>Real beginnings. Real families. Real forever.</h1>
+      <p>
+        Every match on Choice Marriage starts with intention. These stories celebrate couples who found partnership,
+        respect, and a shared future — one careful introduction at a time.
+      </p>
+    </div>
+  </div>
+
+  <div class="container cm-page__body">
+    <div class="cm-stories-intro-block">
+      <h2>Why success stories matter</h2>
+      <p>
+        Behind every wedding photo is a journey of conversations, family meetings, personal doubts, and courageous decisions.
+        At Choice Marriage, we share these stories to remind members that meaningful matches are possible when profiles are honest,
+        preferences are clear, and both sides move with respect.
+      </p>
+      <p>
+        Some couples meet through preference-based recommendations. Others connect after advanced search or family-guided shortlisting.
+        What remains common is sincerity: a willingness to know each other beyond first impressions and to build a life with patience.
+      </p>
+      <p>
+        If you are just beginning your search, let these journeys encourage you to complete your profile, upload genuine photos,
+        and stay open to the right conversation — not the fastest one.
+      </p>
+    </div>
+
+    <div class="cm-page__status" *ngIf="loading">
+      <div class="cm-page__spinner"></div>
+      <p>Loading success stories…</p>
+    </div>
+
+    <div class="cm-stories-intro" *ngIf="!loading">
+      <h2>{{ usingFallback ? 'Featured journeys from Choice Marriage' : 'Stories shared by our members' }}</h2>
+      <p>
+        Love looks different for every couple. What stays common is clarity, family support, and the courage to choose
+        a life together. Read these journeys and imagine the chapter you are ready to begin.
+      </p>
+    </div>
+
+    <div class="row" *ngIf="!loading">
+      <div class="col-md-6 col-lg-4 mb-4" *ngFor="let htmlmaritalstatus of maritalstatus">
+        <article class="cm-story-tile">
+          <div
+            class="cm-story-tile__image"
+            [ngStyle]="{'background-image': 'url(' + storyImage(htmlmaritalstatus) + ')'}"></div>
+          <div class="cm-story-tile__body">
+            <h2>{{ htmlmaritalstatus.login_name }} &amp; {{ htmlmaritalstatus.partner_name }}</h2>
+            <p>{{ htmlmaritalstatus.life_after_marriage }}</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="cm-stories-intro-block" *ngIf="!loading">
+      <h2>How most of these journeys began</h2>
+      <ul>
+        <li>A complete profile with clear personal and family details</li>
+        <li>Partner preferences that reflected real expectations</li>
+        <li>Respectful first conversations and family involvement</li>
+        <li>Patience while understanding compatibility beyond first impressions</li>
+        <li>A shared decision to move from interest to commitment</li>
+      </ul>
+      <p>
+        Your story can begin the same way. Create your free profile, keep your information updated, and explore matches with an open heart
+        and a clear mind. When two people are ready for marriage, the right introduction can change everything.
+      </p>
+      <a class="cm-page__btn" routerLink="/auth/register">Create your free profile</a>
+      <a class="cm-page__btn cm-page__btn--dark" routerLink="/contact-us">Share your success story with us</a>
+    </div>
+
+    <div class="cm-page__status" *ngIf="!loading && (!maritalstatus || maritalstatus.length === 0)">
+      <h2>No story found</h2>
+      <p>Please explore other journeys or return to the homepage.</p>
+      <a class="cm-page__btn" routerLink="/">Back to home</a>
+    </div>
+  </div>
+</section>

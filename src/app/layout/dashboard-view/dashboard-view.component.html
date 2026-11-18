@@ -1,0 +1,21 @@
+<div class="container-fluid w-95 pb-lg-5 cm-dashboard">
+
+    <div class="row gx-0 gx-lg-3 mt-3">
+        <!-- sidebar -->
+        <div class="col-12 col-lg-3 d-none d-lg-block cm-dashboard__sidebar">
+            <app-profile-activity></app-profile-activity>
+
+            <app-package-information></app-package-information>
+        </div>
+        <!-- end of sidebar -->
+
+        <!-- main layout -->
+        <div class="col-12 col-lg-9 cm-dashboard__main">
+            <!-- profile -->
+             <router-outlet></router-outlet>
+            <!-- profile End -->
+        </div>
+        <!--end of main layout -->
+
+    </div>
+</div>

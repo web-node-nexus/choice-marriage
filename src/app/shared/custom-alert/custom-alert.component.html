@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h4 class="modal-title text-danger " id="modal-title">Alert <i class="fa-solid fa-circle-exclamation"></i></h4>
+    <!-- <button
+        style="color: red;"
+        type="button"
+        class="btn-close"
+        aria-describedby="modal-title"
+        (click)="modal.dismiss('Cross click')"
+    ></button> -->
+    <button mat-mini-fab aria-describedby="modal-title"
+    (click)="modal.dismiss('Cross click')">
+        <mat-icon>menu</mat-icon>
+      </button>
+</div>
+<div class="modal-body">
+    <p>
+        <strong>Hi <span class="text-primary">{{auth_Info?.profile_name}}</span> Please Complete Your Profile</strong>
+    </p>
+  
+    <div class="alert alert-danger">
+        <h4 class="fw-bold "><i class="fa-solid fa-circle-exclamation"></i> Profile Not Completed</h4>
+        <p>Please fill out all your details and complete your profile so that our system can help you find your future partner</p>
+        <p><span class="text-danger">Just </span> Click bellow</p>
+      </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('cancel click')">Not Now</button>
+    <button type="button" class="btn btn-outline-success" (click)="setup_profile()">Setup profile</button>
+</div>

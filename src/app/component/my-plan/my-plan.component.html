@@ -1,0 +1,138 @@
+<div class="px-4 py-3 bg-branding text-white rounded" href="#">
+    <h3 class="h5 mb-0"><i class="fa-solid fa-circle-check me-2"></i>MY PLAN INFO</h3>
+</div>
+
+<ng-container *ngIf="plan?.success">
+    <div class="card custom-card p-3 p-md-5">
+        <div class="mt-4">
+            <div class="row">
+                <div class="col-md-8  col-12">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 col-sm-4">
+                            <h5 class="text-grey fw-bold fs-12">Plan Duration</h5>
+                            <span class="Poppins-Semi-Bold fs-14">{{ daysLeft < 0 ? 'Plan Expired' : daysLeft + ' Days'
+                                    }} </span>
+                        </div>
+                        <div class="col-md-4 col-xs-6 col-sm-4">
+                            <h5 class="text-grey fw-bold fs-12">Plan Activated On</h5>
+                            <span class="Poppins-Semi-Bold fs-14">{{ planhistorydata?.plan_stating_date |date:'medium'
+                                }}</span>
+                        </div>
+                        <div class="col-md-4 col-xs-6 col-sm-3 current-plan-brd">
+                            <h5 class="text-grey fw-bold fs-12">Plan Expired On</h5>
+                            <span class="Poppins-Semi-Bold fs-14 color-d">{{ planhistorydata?.plan_ending_date |
+                                date:'medium' }}</span>
+                        </div>
+
+                        <div class="col-md-4 col-xs-6 col-sm-4 mt-4 mr-0">
+                            <h5 class="text-grey fw-bold fs-12">Allowed Chat</h5>
+                            <span class="Poppins-Semi-Bold fs-14">No</span>
+                        </div>
+                        <div class="col-md-8 col-xs-6 col-sm-8 mt-4 mr-0">
+                            <h5 class="text-grey fw-bold fs-12">Allowed Message ( Remaining )
+                            </h5>
+                            <span class="Poppins-Semi-Bold fs-14"><span class="color-d Poppins-Semi-Bold fs-14">{{
+                                    planRemaingFeaturefrom?.sendmessage }}</span> out of {{
+                                planRemaingFeature?.sendmessage }}</span>
+                        </div>
+                        <div class="col-md-3 col-12 col-sm-3 mt-4">
+                            <h5 class="text-grey fw-bold fs-12">View Profile ( Remaining )</h5>
+                            <span class="Poppins-Semi-Bold fs-14"><span class="color-d Poppins-Semi-Bold fs-14">{{
+                                    planRemaingFeaturefrom?.profile_viwe }}</span> out of {{
+                                planRemaingFeature?.profile_viwe }}</span>
+                        </div>
+
+                        <div class="col-md-3 col-12 col-sm-3 mt-4">
+                            <h5 class="text-grey fw-bold fs-12">Horscope View ( Remaining )</h5>
+                            <span class="Poppins-Semi-Bold fs-14"><span class="color-d Poppins-Semi-Bold fs-14">{{
+                                    planRemaingFeaturefrom?.horscope }}</span> out of {{ planRemaingFeature?.horscope
+                                }}</span>
+                        </div>
+
+                        <div class="col-md-3 col-12 col-sm-3 mt-4">
+                            <h5 class="text-grey fw-bold fs-12">Other Contact View ( Remaining )</h5>
+                            <span class="Poppins-Semi-Bold fs-14"><span class="color-d Poppins-Semi-Bold fs-14">{{
+                                    planRemaingFeaturefrom?.contact_view_other }}</span> out of {{
+                                planRemaingFeature?.contact_view_other }}</span>
+                        </div>
+
+                        <div class="col-md-4 col-12 col-sm-3 mt-4 allow_contact">
+                            <h5 class="text-grey fw-bold fs-12">Allowed Contacts ( Remaining )</h5>
+                            <span class="Poppins-Semi-Bold fs-14"><span class="color-d Poppins-Semi-Bold fs-14">{{
+                                    planRemaingFeaturefrom?.contact_view }}</span> out of {{
+                                planRemaingFeature?.contact_view }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-12 ">
+                    <div class="row mr-top-mb mr-0">
+                        <div class="col-md-7 col-xs-7 col-sm-7">
+                            <h5 class="text-grey fw-bold fs-12">Plan Amount</h5>
+                        </div>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                            <h5 class="fs-14">INR {{ planhistorydata?.membership_plan_amount }}</h5>
+                        </div>
+                    </div>
+                    <div class="row mr-0">
+                        <div class="col-md-7 col-xs-7 col-sm-7">
+                            <h5 class="text-grey fw-bold fs-12">Tax (0%)</h5>
+                        </div>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                            <h5 class="fs-14">INR 0</h5>
+                        </div>
+                    </div>
+
+                    <div class="row mr-0">
+                        <div class="col-md-7 col-xs-7 col-sm-7">
+                            <h5 class="text-grey fw-bold fs-12">Total Amount</h5>
+                        </div>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                            <h5 class="fs-14">INR {{ planhistorydata?.membership_plan_amount }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 mt-md-5 text-center">
+                <a routerLink="/subscription/plan" class="btn btn-lg btn-danger me-3">
+                    {{ daysLeft < 0 ? 'Upgrade Now' : 'Add Plain' }} </a>
+                        <!-- <button
+                class="btn btn-lg btn-danger">
+                View Invoice
+            </button> -->
+            </div>
+        </div>
+    </div>
+    <div class="mt-3">
+        <mat-accordion>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Membership Details
+                    </mat-panel-title>
+                    <!-- <mat-panel-description>
+                    Click Me {{panelOpenState ? 'open' : 'closed'}}
+                </mat-panel-description> -->
+                </mat-expansion-panel-header>
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Feature Name</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let keyValuePair of Object.entries(plan.currect_active_plan_information)">
+                            <td>{{ keyMapping[keyValuePair[0]] || keyValuePair[0] }}</td>
+                            <td>{{ keyValuePair[1] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</ng-container>
+<ng-container *ngIf="!plan?.success">
+    <app-no-data-availble></app-no-data-availble>
+</ng-container>

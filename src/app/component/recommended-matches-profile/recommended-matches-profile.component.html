@@ -1,0 +1,162 @@
+<div class="container-fluid container-md">
+  <div class="">
+    <div>
+      <ng-container *ngIf="sectionNameRequired">
+        <div class="flex justify-between mb-4 px-3 fw-bold header-taitel">
+          <span class="Text_bold__lt4Nl Text_textMedium__Fxf2U ">{{sectionName}} {{ '['+matchUserList.length+']'
+            }}</span>
+
+        </div>
+      </ng-container>
+      <div>
+        <div
+          [ngClass]="!sideScollView?'w-100 grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5':'row  overflow-auto flex-nowrap  pt-4 pb-4 gap-3 sm:gap-5'">
+          <ng-container *ngIf="loadingSkeltonLoader">
+            <div class="custom-skeleton p-4">
+              <p-skeleton width="100%" height="150px"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+              <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+              <div class="flex justify-content-between mt-3">
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+              </div>
+            </div>
+            <div class="custom-skeleton p-4">
+              <p-skeleton width="100%" height="150px"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+              <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+              <div class="flex justify-content-between mt-3">
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+              </div>
+            </div>
+            <div class="custom-skeleton p-4">
+              <p-skeleton width="100%" height="150px"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+              <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+              <div class="flex justify-content-between mt-3">
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+              </div>
+            </div>
+            <div class="custom-skeleton p-4">
+              <p-skeleton width="100%" height="150px"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+              <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+              <div class="flex justify-content-between mt-3">
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+              </div>
+            </div>
+            <div class="custom-skeleton p-4">
+              <p-skeleton width="100%" height="150px"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+              <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+              <div class="flex justify-content-between mt-3">
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+              </div>
+            </div>
+            <div class="custom-skeleton p-4">
+              <p-skeleton width="100%" height="150px"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+              <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+              <div class="flex justify-content-between mt-3">
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+              </div>
+            </div>
+          </ng-container>
+
+
+
+
+
+          <ng-container *ngFor="let profile of matchUserList;let i=index">
+
+            <div class="relative product-container p-0"
+              [ngClass]="!sideScollView?'':'col-6 col-md-4 col-lg-4 col-xl-3'">
+
+              <div class=" cursor-pointer overflow-hidden transition-all duration-300 ">
+                <div *ngIf="!['Free','',null].includes(profile?.user_membership_plan_type)"
+                  class="absolute -translate-y-1/2 z-10" style="left: -8px;z-index: 1;">
+                  <div class="relative flex">
+                    <div class="absolute bottom-0 left-0 translate-y-1/2">
+                      <div class="h-11px rounded-tl-full rounded-bl-full"
+                        style="background-color: rgb(177, 114, 18); width: 8px"></div>
+                    </div>
+                    <div
+                      class="Ribbon_ribbon-text-container__V7O6V pl-2 pr-4 sm:pl-3 sm:pr-5 rounded-tl-md flex justify-center items-center"
+                      style="
+                                background: linear-gradient(
+                                  270deg,
+                                  rgb(56, 199, 68) 0%,
+                                  rgb(38, 211, 227) 98.02%
+                                );
+                                height: 22px;
+                              ">
+                      <span
+                        class="text-[10px] sm:text-[14px] md:text-[14px] text-white font-semibold pb-1">Preminum</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="overflow-clip rounded-md lg:rounded-xl flex flex-col justify-between relative flex-1">
+                  <div class="relative flex items-center justify-center overflow-hidden rounded-t-lg flex-1 flex-col"
+                    [routerLink]="'/v1/member-profile/'+profile?.user_id || profile?.auth_ID">
+                    <div class=" relative w-full aspect-square product-img-container ">
+                      <div class="w-full h-full bg-cover product-img "
+                        style="z-index: 0; background-image: url('{{imgURL+profile.user_profile_image}}');background-repeat: no-repeat;background-size: cover">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="py-1 lg:py-2 bg-white rounded-b-lg flex flex-col justify-between">
+                    <div class="p-2">
+                      <div class="rec-mem-title mt-2">
+                        <h2 class="h6 mb-1 text-truncate overflow-containe" [pTooltip]="profile?.user_id">
+                          {{profile?.user_id || profile?.auth_ID }}
+                        </h2>
+                      </div>
+                      <small>{{profile?.user_dob |age}} Years,{{  hight(profile?.user_height)  }}</small>
+                    </div>
+                  </div>
+                  <div class="p-2" *ngIf="false">
+                    <div [id]="'profile_animation_id_'+i"></div>
+                    <button mat-stroked-button color="accent" class="w-100" (click)="like(profile,i)">
+                      <span id="icon" [hidden]="profile?.isLiked"><i class="fa-regular fa-heart me-2"></i></span>
+                      <span id="icon" [hidden]="!profile?.isLiked"><i class="fa-solid fa-heart me-2"></i></span>
+                      <span id="count" hidden>0</span> Like
+                    </button>
+                  </div>
+                  <div class="p-2">
+                    <button class="btn btn-sm bg-success text-uppercase w-100 text-white rounded-pill mt-1"
+                      [routerLink]="'/v1/member-profile/'+ profile?.auth_ID">
+                      View Full Profile
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </ng-container>
+
+        </div>
+
+        <div class="text-end " *ngIf="matchUserList.length>0">
+          <a [routerLink]="'/v1/search_match/'+link" class="btn btn-sm btn-outline-danger py-0">
+            See More
+          </a>
+        </div>
+        <ng-container *ngIf="!loadingSkeltonLoader && matchUserList.length==0">
+          <p class="text-center">No Data Found</p>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

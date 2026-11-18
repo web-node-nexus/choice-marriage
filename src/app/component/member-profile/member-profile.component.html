@@ -1,0 +1,478 @@
+<div class="rounded custom-card card container">
+  <div class="row align-items-center">
+    <div class="col-12 col-md-12 col-lg-12 col-xl-12 px-0">
+      <div class="profile-pic-main position-relative mx-auto me-xl-auto ms-xl-0 mt-0 mt-xl-0 "
+        *ngxPermissionsOnly="'PROFILE_PHOTO'; else noAccess">
+
+        <!-- <img (click)="getPicture(member_profile_Data.user_id)" [src]="imgURL+member_profile_Data?.user_profile_image"
+          class="img-fluid border rounded"class="col-12 col-md-6 col-lg-6 col-xl-3 px-0"
+          [alt]="member_profile_Data.user_id == undefined ? '' : member_profile_Data.user_id" /> -->
+
+        <div id="carouselExampleIndicators" class="carousel slide">
+          <div class="carousel-indicators">
+            <ng-container *ngFor="let data of filteredArray; let i = index">
+              <button type="button" data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i"
+                [class.active]="i === 0" [attr.aria-current]="i === 0 ? 'true' : null"
+                [attr.aria-label]="'Slide ' + (i + 1)">
+              </button>
+            </ng-container>
+          </div>
+
+          <div class="carousel-inner">
+            <span style="z-index:9; position: absolute; background-color: red; padding:10px 15px">
+              <i class="fa fa-eye text-light"></i><strong class="text-light">&nbsp;{{ profileviewcount }}</strong>
+            </span>
+            <span style="z-index:9; position: absolute; bottom:0;  background-color: red; padding:10px 15px">
+              <i class="fa fa-thumbs-up text-light"></i><strong class="text-light">&nbsp;{{ likecount }}</strong>
+            </span>
+
+            <ng-container *ngFor="let data of filteredArray; let i = index">
+              <div class="carousel-item" [class.active]="i === 0">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <img [src]="imgURL + data.user_profile_images" class="d-block w-100" alt="Profile Image {{i + 1}}">
+                    <img [src]="watermarkimg" alt="watermark" class="watermark_img" />
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+      </div>
+      <ng-template #noAccess>
+        <div class="text-center m-4">
+          <img src="assets/img/animation\icons8-photo-gallery.gif" alt="" srcset=""
+            class="image-fluid member_profile_picture">
+          <p class="text-danger">You do not have plan to view photo</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="rounded custom-card card container pt-2 pb-2"
+  *ngxPermissionsOnly="'PROFILE_DETAILS'; else noAccessForPROFILE_Header">
+  <div class="col-12 col-md-12 col-lg-12 col-xl-12 mt-xl-0">
+    <div class="p-0">
+      <div class="d-flex justify-content-between">
+        <a href="javascript:void(0)" (click)="viewContactHoroscop()"
+          class="text-decoration-none badge  view-button profile-floating-button bg-branding text-uppercase px-3 py-2"><span>VIEW
+            Horoscope</span></a>
+        <a href="javascript:void(0)" (click)="viewContact()"> <span
+            class="badge  photo-button profile-floating-button bg-branding text-uppercase px-3 py-2">
+            <span>VIEW CONTACT</span></span> </a>
+      </div>
+      <div class="row for-detail-white mt-xl-3">
+        <div class="d-flex m-2 justify-content-between">
+          <button type="button" (click)="initiateChatConnection(member_profile_Data)"
+            class="btn btn-sm bg-success text-white  me-md-4 btn-top me-2">
+            Send Message
+          </button>
+          <button (click)="viewContact()" type="button" class="btn btn-sm bg-success text-white  me-md-4 btn-top me-2">
+            Call Now
+          </button>
+          <button (click)="initiateChatConnection(member_profile_Data)" type="button"
+            class="btn btn-sm bg-success text-white  me-md-4 btn-top me-2">
+            Chart Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex  justify-content-evenly">
+      <div class="text-center mx-1">
+        <button (click)="shortlistedProfile(member_profile_Data)" class="btn btn-danger btn-new btn-sm">
+          <!-- <img src="assets/images/View-profile/shortlist.png" class="img-fluid img_res" width="60" /> -->
+          <small class="d-block text-light fs-12">Shortlist</small>
+        </button>
+      </div>
+      <div class="text-center mx-1">
+        <button (click)="like(member_profile_Data)" class="btn btn-danger btn-new btn-sm">
+          <!-- <img src="assets/images/View-profile/like.png" class="img-fluid img_res" width="60" /> -->
+          <small class="d-block text-light fs-12">Like</small>
+        </button>
+      </div>
+      <div class="text-center mx-1">
+        <button (click)="ignoreProfile(member_profile_Data?.user_id )" class="btn btn-danger btn-new btn-sm">
+          <!-- <img src="assets/images/View-profile/cancel.png" class="img-fluid img_res" width="60" /> -->
+          <small class="d-block text-light fs-12">Intrest</small>
+        </button>
+      </div>
+      <div class="text-center mx-1">
+        <button class="btn btn-danger btn-new btn-sm">
+          <!-- <img src="assets/images/View-profile/cancel.png" class="img-fluid img_res" width="60" /> -->
+          <small class="d-block text-light fs-12">Ignore</small>
+        </button>
+        <!-- (click)="ignoreProfile(member_profile_Data?.user_id )" -->
+      </div>
+      <!-- <div class="text-center">
+      <a href="view-horoscope.html" class="btn">
+        <img src="assets/images/View-profile/add.png" class="img-fluid img_res d-md-none" width="36" />
+        <img src="assets/images/View-profile/add.png" class="img-fluid d-none d-md-block" width="60" />
+      </a>
+      <small class="d-block text-danger fs-12">Request photo or Horoscope</small>
+    </div> -->
+    </div>
+
+
+  </div>
+  <mat-accordion class="example-headers-align" multi>
+
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="fw-bold mainhading">Basic Details</span>
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+            Click Me {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description> -->
+      </mat-expansion-panel-header>
+      <div class="row">
+        <div class="col">
+          <p class="text-muted">
+            <span class="fw-600 fw-bold hading">ID:</span>
+            <span class="detail fw-bold">{{ member_profile_Data?.auth_ID || 'NA' }}</span>
+          </p>
+          <p class="text-muted">
+            <span class="fw-600 fw-bold hading">Gender:</span>
+            <span class="detail fw-bold">{{ member_profile_Data?.user_gender || 'NA' }}</span>
+          </p>
+          <p class="text-muted">
+            <span class="fw-600 fw-bold hading">Marital Status:</span>
+            <span class="detail fw-bold">{{ member_profile_Data?.user_marital_status || 'NA' }}</span>
+          </p>
+          <p class="text-muted">
+            <span class="fw-600 fw-bold hading">Mother Tongue:</span>
+            <span class="detail fw-bold">{{ member_profile_Data?.user_mother_toungh || 'NA' }}</span>
+          </p>
+          <p class="text-muted">
+            <span class="fw-600 fw-bold hading">D.O.B:</span>
+            <span class="detail fw-bold"> {{ member_profile_Data?.user_dob ? (member_profile_Data.user_dob | date:
+              'dd-MMM-yyyy') : 'NA' }}</span>
+          </p>
+        </div>
+
+        <!-- <div class="col">
+
+          <p class="text-muted"><span class="fw-600 fw-bold">Job location :
+                        </span>{{member_profile_Data?.user_occupation_location}}
+                    </p>
+
+        </div> -->
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="fw-bold mainhading">Qualification & Occupation Details</span>
+
+        </mat-panel-title>
+        <!-- Job/Business -->
+      </mat-expansion-panel-header>
+      <div class="row">
+        <div class="col">
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Highest Education :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_highest_education || 'NA' }}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Additional Degree :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_additional_education || 'NA' }}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Occupation :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_occupation || 'NA' }}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Employed In : </span>
+            <span class="detail fw-bold">{{member_profile_Data?.user_employed_In || 'NA' }}</span>
+          </p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Desigstion : </span>
+            <span class="detail fw-bold">{{member_profile_Data?.user_deg || 'NA' }}</span>
+          </p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Annunal Income :
+            </span><span class="detail fw-bold">{{ member_profile_Data?.user_anual_income * 100000 || 'NA' }}</span>
+          </p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Occupation Details :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_occupation_details || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Job Location :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_occupation_location || 'NA'}}</span>
+          </p>
+          <!-- <p class="text-muted"><span class="fw-600 fw-bold">Height :
+                    </span>{{member_profile_Data?.user_height}}</p> -->
+        </div>
+        <!-- <div class="col">
+
+        </div> -->
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="fw-bold mainhading"> Physical Details</span>
+
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+            Click Me {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description> -->
+      </mat-expansion-panel-header>
+      <div class="row">
+        <div class="col">
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Colour :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_complextion || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Height :
+            </span><span class="detail fw-bold">{{ hight(member_profile_Data?.user_height) }}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Body Type :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_body_type || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Physical Status :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_physical_status || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Weight (In KG) :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_weight || 'NA'}}</span></p>
+        </div>
+        <!-- <div class="col">
+
+
+
+        </div> -->
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="fw-bold mainhading"> Cast</span>
+
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+            Click Me {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description> -->
+      </mat-expansion-panel-header>
+      <div class="row">
+        <div class="col">
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Religion :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_religion || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Caste :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_caste || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Sub Caste :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_subcaste || 'NA'}}</span></p>
+
+
+        </div>
+        <!-- <div class="col">
+                    <p class="text-muted"><span class="fw-600 fw-bold">Fiscal Status :
+                        </span>{{member_profile_Data?.user_body_type}}</p>
+                    <p class="text-muted"><span class="fw-600 fw-bold">Weight :
+                        </span>{{member_profile_Data?.user_weight}}</p>
+
+
+                </div> -->
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="fw-bold mainhading"> Family Details</span>
+
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <div class="row">
+        <div class="col">
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Family Type :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_family_type || 'NA'}} </span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Family Value :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_family_value || 'NA'}} </span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Family Status :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_family_status || 'NA'}} </span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">No Of Unmarried Brother :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_no_of_unmarried_sister || 'NA'}} </span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">No Of Unmarried Sister :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_no_of_unmarried_sister || 'NA'}} </span></p>
+
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Father Name :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_father_name || 'NA'}} </span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Father Occupation :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_father_occupation || 'NA'}} </span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Mother Name :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_mother_name || 'NA'}} </span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Mothers Occupation :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_mothers_occupation || 'NA'}} </span></p>
+
+          <p class="text-muted"><span class="fw-600 fw-bold hading">No Of Married Sister :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_no_of_married_sister || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">No Of Married Sister :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_no_of_married_sister || 'NA'}}</span></p>
+
+
+
+
+        </div>
+        <!--
+        <div class="col">
+
+
+
+
+
+
+        </div> -->
+      </div>
+    </mat-expansion-panel>
+    <!-- <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="fw-bold mainhading">Address Details</span>
+
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <div class="row">
+
+
+        <div class="col">
+
+
+
+
+
+
+        </div>
+      </div>
+    </mat-expansion-panel> -->
+    <mat-expansion-panel [expanded]="valueforshowhide" id="HoroscopeDetails" [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="fw-bold mainhading"> View Horoscope </span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="row">
+        <!--  -->
+        <!-- <button class="button-1" *ngIf="hororsopebtn" role="button" (click)="showHoroscopeDetails()">View
+          Horoscope</button> -->
+        <!--  -->
+        <!-- *ngIf="hororsopecon" -->
+        <div class="col">
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Horoscope :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_horoscope || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Mangalik :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_mangalik || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Rasi :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_zodiacs || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Nakhyatra :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_nakhyatra || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Gotra :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_gotra || 'NA'}}</span></p>
+
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Time Of
+              Bath
+              :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_dateoftime | timeConversion }}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Place Of Bath :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_dateofplace || 'NA'}}</span></p>
+
+          <!-- <p class="text-muted"><span class="fw-600 fw-bold hading">View Kundali :
+            </span><button ><span class="detail fw-bold">
+                <i class="fas fa-eye"></i> View</span>
+            </button></p> -->
+        </div>
+        <button class="button-1" (click)="showHoroscopeDetails()" role="button">{{ Requestkundali }}</button>
+        <!-- <div class="col" id="rright">
+
+
+
+
+
+        </div> -->
+      </div>
+    </mat-expansion-panel>
+
+
+
+
+
+
+    <mat-expansion-panel [expanded]="true" id="contactPanel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="fw-bold mainhading"> Address Details</span>
+
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="row">
+
+        <div class="col">
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Current Country :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_country || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Current State :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_state || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Current City :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_city || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Permanent Country :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_Permanent_country || 'NA'}}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Permanent State :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_Permanent_state || 'NA' }}</span></p>
+          <p class="text-muted"><span class="fw-600 fw-bold hading">Permanent City :
+            </span><span class="detail fw-bold">{{member_profile_Data?.user_Permanent_city || 'NA'}}</span></p>
+          <ng-container *ngIf="contactcontent">
+            <!-- <div class="col"  id="leftColumn"> -->
+            <p class="text-muted"><span class="fw-600 fw-bold hading">Gmail :
+              </span><span class="detail fw-bold">{{member_profile_Data?.user_email || 'NA'}}</span></p>
+            <p class="text-muted"><span class="fw-600 fw-bold hading">Whatsapp Number :
+              </span><span class="detail fw-bold">{{member_profile_Data?.user_whatsapp_no || 'NA'}}</span></p>
+            <p class="text-muted"><span class="fw-600 fw-bold hading">Permanent Address :
+              </span><span class="detail fw-bold">{{member_profile_Data?.user_Permanent_Address || 'NA'}}</span></p>
+            <p class="text-muted"><span class="fw-600 fw-bold hading">Phone Number :
+              </span><span class="detail fw-bold">{{member_profile_Data?.user_whatsapp_no || 'NA'}}</span></p>
+            <p class="text-muted"><span class="fw-600 fw-bold hading">Name :
+              </span><span class="detail fw-bold">{{member_profile_Data?.user_full_name || 'NA'}}</span></p>
+            <p class="text-muted"><span class="fw-600 fw-bold hading">Current Address :
+              </span><span class="detail fw-bold">{{member_profile_Data?.user_Address || 'NA'}}</span></p>
+          </ng-container>
+        </div>
+        <button class="button-1"  *ngIf="contactbtn" id="contact" role="button"
+          (click)="showContactDetails()">View
+          contact</button>
+
+        <button class="button-1" *ngIf="viewadminbtn" id="contact" role="button"
+          (click)="contactAdmin()">Contact Admin</button>
+
+
+        <!-- <div class="col" id="rightColumn">
+
+        </div> -->
+
+      </div>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>
+<ng-template #noAccessForPROFILE_Header>
+  <div class="rounded custom-card card container pt-2 pb-2 mt-2">
+
+    <p class="text-center text-danger">You do not have plan to view profile details </p>
+  </div>
+</ng-template>
+
+
+
+<p-galleria [value]="selecteduploadedFiles" [(visible)]="displayBasic" [responsiveOptions]="responsiveOptions"
+  [containerStyle]="{ 'max-width': '100%' }" [numVisible]="selecteduploadedFiles.length" [circular]="true"
+  [fullScreen]="true" [showItemNavigators]="true" [baseZIndex]="100000">
+  <ng-template pTemplate="item" let-item>
+    <p-image [src]="item.previewImageSrc | safeUrlPipe" alt="Image" width="600" height="350" [preview]="true"></p-image>
+    <!-- <img [src]="item.previewImageSrc" style=" display: block;" width="600" height="350"/> -->
+  </ng-template>
+  <ng-template pTemplate="thumbnail" let-item>
+    <div class="grid grid-nogutter justify-content-center">
+      <img [src]="item.thumbnailImageSrc | safeUrlPipe" style="display: block" width="50" height="50" />
+    </div>
+  </ng-template>
+</p-galleria>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

@@ -1,0 +1,343 @@
+<section class="cm-landing">
+  <!-- HERO -->
+  <section class="cm-hero">
+    <img
+      class="cm-hero__media"
+      src="assets/images/landing/cm-hero-pro.jpg"
+      alt="Choice Marriage — premium Indian matchmaking"
+    />
+    <div class="cm-hero__veil"></div>
+    <div class="cm-hero__content">
+      <p class="cm-hero__brand">Choice Marriage</p>
+      <h1 class="cm-hero__title">Where intention meets the right heart.</h1>
+      <p class="cm-hero__sub">
+        A refined matchmaking experience for people ready to build a thoughtful, lasting marriage — with privacy, clarity, and care.
+      </p>
+      <div class="cm-hero__actions" *ngIf="!isLogin">
+        <a class="cm-btn cm-btn--primary" href="#cm-auth" (click)="signAndRegisterBtnClick=false">Begin your journey</a>
+        <a class="cm-btn cm-btn--ghost" href="#cm-promise">Discover the difference</a>
+      </div>
+      <div class="cm-hero__actions" *ngIf="isLogin">
+        <a class="cm-btn cm-btn--primary" routerLink="/v1/search_match">Continue to matches</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
+  <section class="cm-promise" id="cm-promise">
+    <div class="cm-promise__inner">
+      <div class="cm-promise__copy">
+        <p class="cm-kicker">Our promise</p>
+        <h2>Marriage is not a search result. It is a carefully chosen beginning.</h2>
+        <p>
+          Choice Marriage is built for families and individuals who want more than endless scrolling.
+          We focus on meaningful profiles, respectful introductions, and tools that help you decide with confidence.
+        </p>
+        <p>
+          From the first profile draft to your first conversation, every step is designed to feel calm, modern, and trustworthy.
+        </p>
+      </div>
+      <div class="cm-promise__visual">
+        <img src="assets/images/landing/cm-detail.jpg" alt="Celebration details that mark a new beginning" />
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="cm-steps">
+    <div class="cm-steps__head">
+      <p class="cm-kicker">How it works</p>
+      <h2>Four clear steps. No confusion. No noise.</h2>
+      <p>A guided path from creating your profile to connecting with people who truly fit your values and lifestyle.</p>
+    </div>
+    <div class="cm-steps__grid">
+      <article class="cm-step">
+        <span>01</span>
+        <h3>Create your profile</h3>
+        <p>Share your story, education, family values, lifestyle, and preferences with a polished profile that feels authentic.</p>
+      </article>
+      <article class="cm-step">
+        <span>02</span>
+        <h3>Set partner preference</h3>
+        <p>Define what matters — age, community, location, education, profession — so your matches stay relevant and respectful.</p>
+      </article>
+      <article class="cm-step">
+        <span>03</span>
+        <h3>Explore curated matches</h3>
+        <p>Browse recommended, recent, and preference-based matches with rich details, photos, and clear compatibility signals.</p>
+      </article>
+      <article class="cm-step">
+        <span>04</span>
+        <h3>Connect with confidence</h3>
+        <p>Express interest, exchange messages, and move forward only when both sides feel ready — with privacy always in your control.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- FEATURE SPLIT -->
+  <section class="cm-feature">
+    <div class="cm-feature__media">
+      <img src="assets/images/landing/cm-couple-walk.jpg" alt="A couple beginning their journey together" />
+    </div>
+    <div class="cm-feature__copy">
+      <p class="cm-kicker">Designed for real families</p>
+      <h2>Serious intentions. Beautiful presentation. Practical tools.</h2>
+      <ul>
+        <li>
+          <strong>Private by default</strong>
+          <span>Control who sees your photos, contact details, and personal information.</span>
+        </li>
+        <li>
+          <strong>Search that respects context</strong>
+          <span>Quick, advanced, keyword, and ID search help you find the right profiles without wasting time.</span>
+        </li>
+        <li>
+          <strong>Membership with purpose</strong>
+          <span>Upgrade only when you need deeper access — more contacts, messages, and profile visibility.</span>
+        </li>
+        <li>
+          <strong>Support when you need it</strong>
+          <span>Reach our team for guidance, account help, or profile support at every stage.</span>
+        </li>
+      </ul>
+      <a class="cm-btn cm-btn--dark" routerLink="/subscription/plan">View membership plans</a>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="cm-values">
+    <div class="cm-values__head">
+      <p class="cm-kicker">What we stand for</p>
+      <h2>A matchmaking culture built on dignity.</h2>
+    </div>
+    <div class="cm-values__grid">
+      <article>
+        <h3>Authenticity</h3>
+        <p>Profiles should feel human — complete, honest, and ready for a real conversation about marriage.</p>
+      </article>
+      <article>
+        <h3>Respect</h3>
+        <p>Every interaction should protect comfort. Interest is invited, never forced.</p>
+      </article>
+      <article>
+        <h3>Clarity</h3>
+        <p>Preferences, plans, and next steps stay transparent so families can decide with peace of mind.</p>
+      </article>
+      <article>
+        <h3>Care</h3>
+        <p>From onboarding to success stories, we treat every journey as personal — because it is.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- AMBIANCE BAND -->
+  <section class="cm-ambiance">
+    <img src="assets/images/landing/cm-ambiance.jpg" alt="A warm celebration atmosphere" />
+    <div class="cm-ambiance__overlay">
+      <p class="cm-kicker">For forever, not for scrolling</p>
+      <h2>Create a profile that feels worthy of the life you want to build.</h2>
+      <a class="cm-btn cm-btn--primary" href="#cm-auth" *ngIf="!isLogin" (click)="signAndRegisterBtnClick=false">Create free profile</a>
+      <a class="cm-btn cm-btn--primary" routerLink="/v1/search_match" *ngIf="isLogin">Open your matches</a>
+    </div>
+  </section>
+
+  <!-- AUTH -->
+  <section class="cm-auth" id="cm-auth" *ngIf="!isLogin">
+    <div class="cm-auth__shell">
+      <div class="cm-auth__copy">
+        <p class="cm-kicker">Start here</p>
+        <h2>Your story deserves a place that feels elevated.</h2>
+        <p>
+          Register free, complete your details, upload photos, and begin discovering people who share your pace, values, and vision for marriage.
+        </p>
+        <div class="cm-auth__stats">
+          <div>
+            <strong>Guided</strong>
+            <span>profile setup</span>
+          </div>
+          <div>
+            <strong>Private</strong>
+            <span>contact control</span>
+          </div>
+          <div>
+            <strong>Smart</strong>
+            <span>match discovery</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cm-auth__panel">
+        <div class="cm-auth__tabs">
+          <button
+            type="button"
+            class="cm-auth__tab"
+            [class.is-active]="!signAndRegisterBtnClick"
+            (click)="signAndRegisterBtnClick=false">
+            Register
+          </button>
+          <button
+            type="button"
+            class="cm-auth__tab"
+            [class.is-active]="signAndRegisterBtnClick"
+            (click)="signAndRegisterBtnClick=true">
+            Sign in
+          </button>
+        </div>
+        <div class="cm-auth__form">
+          <ng-container *ngIf="signAndRegisterBtnClick">
+            <app-login></app-login>
+          </ng-container>
+          <ng-container *ngIf="!signAndRegisterBtnClick">
+            <app-register></app-register>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY NOTES -->
+  <section class="cm-notes">
+    <div class="cm-notes__head">
+      <p class="cm-kicker">Voices from the journey</p>
+      <h2>What families look for — and what we help them find.</h2>
+    </div>
+    <div class="cm-notes__grid">
+      <blockquote>
+        <p>“We wanted a platform that felt respectful. Clear profiles, calm design, and no pressure — just thoughtful introductions.”</p>
+        <cite>Parents seeking a partner for their daughter</cite>
+      </blockquote>
+      <blockquote>
+        <p>“I wasn’t looking for endless chat. I wanted someone with shared values, ambition, and readiness for marriage.”</p>
+        <cite>Professional beginning a serious search</cite>
+      </blockquote>
+      <blockquote>
+        <p>“The preference tools and membership options made the process practical. We always knew what to do next.”</p>
+        <cite>Family completing a successful match</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ADS TOP -->
+  <ng-container *ngIf="adv1?.length">
+    <div class="container cm-ads" id="successStoryTop">
+      <owl-carousel-o [options]="customOptionsadv">
+        <ng-container *ngFor="let htmlmaritalstatus of adv1">
+          <ng-template carouselSlide>
+            <div class="item item-pad">
+              <div class="client-img1">
+                <img [src]="urladv+htmlmaritalstatus?.image" class="img-fluid client-img-custom1" style="width: 99%;" alt="promotion">
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </ng-container>
+
+  <!-- SUCCESS STORIES -->
+  <ng-container *ngIf="maritalstatus?.length">
+    <section class="cm-stories container w-95" id="successStory">
+      <div class="cm-stories__head">
+        <p class="cm-kicker">Love, sealed with intention</p>
+        <h2>Success stories from Choice Marriage</h2>
+        <p>Real couples. Real families. Real beginnings that started with a careful match.</p>
+        <a class="cm-link" routerLink="/success_story">View all stories</a>
+      </div>
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let htmlmaritalstatus of maritalstatus">
+          <ng-template carouselSlide>
+            <div class="item">
+              <a [routerLink]="['/success_story', htmlmaritalstatus.id]" class="cm-story-card">
+                <div class="client-img">
+                  <img [src]="urlsstory+htmlmaritalstatus.wedding_photo" class="img-fluid rounded-top" alt="client story">
+                </div>
+                <div class="cm-story-card__meta">
+                  <h3 class="h6 mb-0">{{ htmlmaritalstatus.login_name }} &amp; {{ htmlmaritalstatus.partner_name }}</h3>
+                </div>
+              </a>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </section>
+  </ng-container>
+
+  <ng-container *ngIf="!maritalstatus?.length">
+    <section class="cm-stories cm-stories--empty">
+      <div class="cm-stories__head">
+        <p class="cm-kicker">Love, sealed with intention</p>
+        <h2>Every profile is a possible forever.</h2>
+        <p>When couples share their journey with us, their stories appear here — beautifully, proudly, and with gratitude.</p>
+        <a class="cm-btn cm-btn--dark" routerLink="/success_story">Visit success stories</a>
+      </div>
+      <div class="cm-stories__empty-visual">
+        <img src="assets/images/landing/cm-story.jpg" alt="A celebration of partnership" />
+      </div>
+    </section>
+  </ng-container>
+
+  <!-- FAQ -->
+  <section class="cm-faq">
+    <div class="cm-faq__head">
+      <p class="cm-kicker">Good to know</p>
+      <h2>Answers before you begin.</h2>
+    </div>
+    <div class="cm-faq__list">
+      <details open>
+        <summary>Is registration free?</summary>
+        <p>Yes. You can create your profile free and explore the platform. Membership upgrades unlock deeper contact and messaging benefits when you need them.</p>
+      </details>
+      <details>
+        <summary>Can I control who sees my details?</summary>
+        <p>Yes. Privacy settings help you manage photo visibility and contact sharing so you stay comfortable at every stage.</p>
+      </details>
+      <details>
+        <summary>What makes a strong profile?</summary>
+        <p>A complete story, clear preferences, genuine photos, and honest lifestyle details. The more complete your profile, the better your introductions feel.</p>
+      </details>
+      <details>
+        <summary>How do I get help?</summary>
+        <p>Use Contact Us anytime for support, membership questions, or account guidance. Our team is here to help you move forward smoothly.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cm-final">
+    <div class="cm-final__inner">
+      <p class="cm-kicker">Ready when you are</p>
+      <h2>Your forever person may already be waiting for a conversation that feels right.</h2>
+      <div class="cm-final__actions" *ngIf="!isLogin">
+        <a class="cm-btn cm-btn--primary" href="#cm-auth" (click)="signAndRegisterBtnClick=false">Create free profile</a>
+        <a class="cm-btn cm-btn--ghost-dark" routerLink="/about-us">Learn about us</a>
+      </div>
+      <div class="cm-final__actions" *ngIf="isLogin">
+        <a class="cm-btn cm-btn--primary" routerLink="/v1/search_match">Go to matches</a>
+        <a class="cm-btn cm-btn--ghost-dark" routerLink="/subscription/plan">Upgrade membership</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADS BOTTOM -->
+  <ng-container *ngIf="adv2?.length">
+    <div class="container cm-ads" id="successStoryBottom">
+      <owl-carousel-o [options]="customOptionsadv">
+        <ng-container *ngFor="let htmlmaritalstatus of adv2">
+          <ng-template carouselSlide>
+            <div class="item item-pad">
+              <div class="client-img1">
+                <img [src]="urladv+htmlmaritalstatus?.image" class="img-fluid client-img-custom1" style="width: 99%;" alt="promotion">
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </ng-container>
+
+  <div class="fixed_social_icon">
+    <a [href]="'https://wa.me/'+whatsapp+'?text=Hi'" target="_blank" rel="noopener noreferrer">
+      <img src="../../../assets/images/auth//w.png" alt="WhatsApp" />
+    </a>
+  </div>
+</section>

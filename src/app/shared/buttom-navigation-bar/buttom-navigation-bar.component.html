@@ -1,0 +1,66 @@
+<ng-container *ngIf="isLogin && screenWidth <= 425">
+  <!-- <div>
+    <div style="height: 70px;">
+
+    </div>
+  </div>
+  <div class='buttom-navigation'>
+    <div class='frame'>
+      <div class='bar'>
+        <a class='els-wrap el-1' routerLink='/'>
+          <div class='icon'>
+            <i class="fa-solid fa-house" style="color: #146aff;"></i>
+          </div>
+          <p class='label'>Home</p>
+        </a>
+
+        <a routerLink='/search_match' class='els-wrap el-2'>
+          <div class='icon'>
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <p class='label'>Matches</p>
+        </a>
+        <a routerLink='/chat' class='els-wrap el-3'>
+          <div class='icon'>
+            <i class="far fa-comment-dots"></i>
+          </div>
+          <p class='label'>Chat</p>
+        </a>
+        <a routerLink="/notification" class='els-wrap el-4'>
+          <div class='icon'>
+            <i class="far fa-bell"></i>
+          </div>
+          <p class='label'>Notification</p>
+        </a>
+        <a class='els-wrap el-1'[routerLink]="['/my-profile']" >
+          <div class='icon'>
+            <i class="far fa-user-circle"></i>
+          </div>
+          <p class='label'>Profile</p>
+        </a>
+
+      </div>
+    </div>
+  </div> -->
+  <div class='buttom-navigation'>
+    <div class="sticky-footer d-md-none z-0">
+      <a href="/" class="text-decoration-none one-fourth">
+        <img src="assets/images/footer-menu/home.png" class="mb-1" />
+        <p>Home</p>
+      </a>
+      <a href="/v1/search_match/byCastmatchesforindivisual" class="text-decoration-none one-fourth">
+        <img src="assets/images/footer-menu/heart.png" class="mb-1" />
+        <p>Match</p>
+      </a>
+      <a href="/notification" class="text-decoration-none one-fourth" style="position: relative;">
+        <img src="assets/images/footer-menu/notification.png" class="mb-1" >
+        <p>Notification</p>
+        <span class="notification-badge">{{notificationCount}}</span>
+      </a>
+      <a routerLink="/v1/my-profile" class="text-decoration-none one-fourth">
+        <img src="assets/images/footer-menu/profile.png" class="mb-1" />
+        <p>Profile</p>
+      </a>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,58 @@
+.image-holder {
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space out the image and buttons */
+  align-items: center; /* Center items horizontally */
+}
+
+.img-thumbnail {
+  width: 100%; /* Make the image fit within the container */
+  height: 100%; /* Fixed height for the image */
+  object-fit: cover; /* Cover the area while maintaining aspect ratio */
+  border-radius: 8px; /* Optional: Adds rounded corners to the image */
+}
+
+.upload-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.upload-btn i {
+  font-size: 1.5rem;
+}
+
+.btn-custom {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.pad {
+  margin: 12px;
+}
+
+/* Responsive grid layout */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 item per row on mobile */
+  }
+}
+
+@media (min-width: 769px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row for small screens */
+  }
+}
+
+@media (min-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row for medium screens */
+  }
+}

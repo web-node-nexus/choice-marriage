@@ -1,0 +1,96 @@
+.cm-contact-shell {
+  background: #f3f6fa;
+  padding-bottom: 2rem;
+}
+
+.cm-contact-shell__hero {
+  padding: 3rem 1.25rem 1.5rem;
+  text-align: center;
+  color: #fff;
+  background:
+    radial-gradient(700px 240px at 85% 0%, rgba(190, 18, 60, 0.2), transparent 55%),
+    linear-gradient(145deg, #0b1220, #1e293b);
+}
+
+.cm-contact-shell__kicker {
+  margin: 0 0 0.65rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #5eead4;
+}
+
+.cm-contact-shell__hero h1 {
+  margin: 0 auto;
+  max-width: 14ch;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.cm-contact-shell__hero p {
+  margin: 0.85rem auto 0;
+  max-width: 34rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.65;
+}
+
+.cm-contact-tips {
+  padding: 1.1rem 1rem;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid rgba(11, 18, 32, 0.06);
+}
+
+.cm-contact-tips h6 {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.cm-contact-tips ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #5b6577;
+  line-height: 1.7;
+}
+
+:host ::ng-deep .cm-contact-fallback p {
+  margin-bottom: 0.65rem;
+  color: #334155;
+  line-height: 1.65;
+}
+
+:host ::ng-deep .cm-contact-fallback ul {
+  padding-left: 1.1rem;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.cm-contact-extra {
+  padding-top: 1.25rem;
+}
+
+.cm-contact-card {
+  height: 100%;
+  padding: 1.25rem 1.1rem;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(11, 18, 32, 0.06);
+  box-shadow: 0 12px 28px rgba(11, 18, 32, 0.05);
+}
+
+.cm-contact-card h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.cm-contact-card p {
+  margin: 0.7rem 0 0;
+  color: #5b6577;
+  line-height: 1.65;
+}

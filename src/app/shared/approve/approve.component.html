@@ -1,0 +1,72 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" *ngIf="mobile">Mobile number change request</h5>
+    <h5 class="modal-title" *ngIf="gender">Gender change request</h5>
+    <h5 class="modal-title" *ngIf="gamil">Email id change request</h5>
+    <h5 class="modal-title" *ngIf="whatsap">Whatsapp number change request</h5>
+    <button type="button" class="close" (click)="closeModal()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div *ngIf="mobile" class="modal-body">
+    <p>Your Mobile No is <strong class="backs">{{ value }}</strong></p>
+
+    <form>
+      <label for="newMobile">New Mobile No:</label>
+      <div class="form-row">
+        <div class="col">
+          <select class="form-control" [(ngModel)]="seletcountry" name="seletcountry">
+            <option *ngFor="let data of countryid" [value]="data.phonecode">{{ data.name }}</option>
+          </select>
+        </div>
+        <div class="col">
+          <input type="text" id="newMobile" name="newMobile" [(ngModel)]="newmobile"
+            placeholder="Enter New Mobile Number" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" (click)="submitValue('Mobile')" class="btn btn-primary btn-bc">Change Mobile No</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="gender" class="modal-body">
+    <p>
+      Your Gender is <strong class="backs">{{ value }}</strong>. Press OK to change your Gender to <strong
+        class="backs">{{ valuereverse }}</strong>.
+    </p>
+    <p>
+      <button class="btn btn-secondary btn-bc" (click)="submitValue('Gender')">Change Gender</button>
+    </p>
+  </div>
+
+  <div *ngIf="gamil" class="modal-body">
+    <p>Your Email Id <strong class="backs">{{ value }}</strong></p>
+    <form>
+      <div class="form-group">
+        <label for="newMobile">New Email Id:</label>
+        <input type="text" id="newEmail" name="newEmail" [(ngModel)]="newemail" placeholder="Enter New Email Id"
+          class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-bc" (click)="submitValue('Email')">Change Email Id</button>
+    </form>
+  </div>
+  <div *ngIf="whatsap" class="modal-body">
+    <p>Your Whatsapp Number <strong class="backs">{{ value }}</strong></p>
+    <form>
+      <div class="form-group">
+        <label for="newMobile">New Whatsapp Number:</label>
+        <select class="form-control" [(ngModel)]="seletcountry" name="seletcountry" id="">
+          <option *ngFor="let data of countryid" [value]="data.phonecode">{{ data.name }}</option>
+        </select>
+        <input type="text" id="newMobile" name="newMobile" [(ngModel)]="newwhatsapp" placeholder="Enter New Mobile Number"
+          class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-bc" (click)="submitValue('Whatsapp')">Change Whatsapp
+        Number</button>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary back" (click)="closeModal()">Close</button>
+  </div>
+</div>

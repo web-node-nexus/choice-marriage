@@ -1,0 +1,89 @@
+<!-- app.component.html -->
+<div class="container">
+
+
+  <form [formGroup]='successstorybyuser'>
+    <div class="text-center">
+      <h1 class="btn btn-success text-light text-center">Add Success Story</h1>
+    </div>
+    <div class="form-group">
+      <label for="relationshipStatus">Partner Id</label>
+      <mat-form-field appearance="fill">
+        <mat-label>Partner id:</mat-label>
+        <mat-select formControlName="dta"  (selectionChange)="viweImage($event.value)">
+          <mat-option *ngFor="let status of relationshipStatusOptions" [value]="status.user_id">
+            {{ status.user_id }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <div class="d-flex flex-column align-items-center p-3">
+      <div class="mb-3">
+        <img [src]="url+image" id="kkk" alt="Image 1" class="m-2">
+        <span for="kkk" class="text-center d-block"> {{ id }}</span>
+      </div>
+      <div *ngIf="imagetag">
+        <img [src]="url+alldata.user_profile_image" id="lll" alt="Image 2" class="m-2">
+        <span for="lll" class="text-center d-block"> {{ changeid }}</span>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="photo">Wedding Photo</label>
+      <input type="file" id="photo" (change)="handleInputChange($event)" name="photo" accept="image/*">
+    </div>
+
+    <div *ngIf="imageSrc" class="form-group">
+      <label>Preview:</label>
+      <img [src]="imageSrc" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+    </div>
+
+
+    <div class="form-group">
+      <label for="weddingDate">Wedding Date</label>
+      <mat-form-field appearance="fill">
+        <mat-label>Select Wedding Date:</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="marriage_date">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1 s></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label for="ringExchangeDate">Ring Exchange Date</label>
+      <mat-form-field appearance="fill">
+        <mat-label>Select Ring Exchange Date:</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="ring_exchange_date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label for="howWeMet">Story</label>
+      <textarea id="howWeMet" name="howWeMet" formControlName="life_after_marriage" rows="4" cols="50" class="textarea-border"></textarea>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="proposal">Proposal</label>
+      <textarea id="proposal" name="proposal" formControlName="the_proposal" rows="4" cols="50"></textarea>
+    </div> -->
+
+    <!-- <div class="form-group">
+    <label for="weddingDay">Our Wedding Day</label>
+    <textarea id="weddingDay" name="weddingDay" formControlName="our_edding_day" rows="4" cols="50"></textarea>
+  </div> -->
+
+    <!-- <div class="form-group">
+    <label for="lifeAfterMarriage">Life After Marriage</label>
+    <textarea id="lifeAfterMarriage" name="lifeAfterMarriage" formControlName="life_after_marriage" rows="4" cols="50"></textarea>
+  </div> -->
+
+    <div class="form-group">
+      <input type="submit" value="Upload" (click)="submit()">
+    </div>
+  </form>
+</div>

@@ -1,0 +1,49 @@
+<div class="cm-login font-segeo">
+  <div class="cm-login__intro">
+    <p class="cm-login__eyebrow">Welcome back</p>
+    <h2 class="cm-login__title">Sign in to continue</h2>
+    <p class="cm-login__sub">Access your matches, messages, and membership in one place.</p>
+  </div>
+
+  <form [formGroup]="loginForm" class="cm-login__form">
+    <div class="cm-login__field">
+      <label class="cm-login__label" for="name">Email / Mobile / User ID</label>
+      <input id="name" type="text" autocomplete="username" placeholder="Enter email, mobile or user ID"
+        class="cm-login__control form-input" formControlName="userID">
+    </div>
+
+    <div class="cm-login__field">
+      <label class="cm-login__label" for="password">Password</label>
+      <div class="cm-login__password">
+        <input id="password" autocomplete="current-password" placeholder="Enter your password"
+          [type]="hide ? 'password' : 'text'" class="cm-login__control form-input" formControlName="password">
+        <button type="button" class="cm-login__eye" (click)="hide = !hide"
+          [attr.aria-label]="hide ? 'Show password' : 'Hide password'">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="cm-login__captcha">
+      <label class="cm-login__label">Security check</label>
+      <div class="cm-login__captcha-row">
+        <div class="cm-login__captcha-img">
+          <img [src]="imageElement" alt="CAPTCHA Image" class="captcha-image">
+        </div>
+        <button type="button" class="cm-login__refresh btn refresh-captcha-btn" (click)="renderCaptcha()">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+      <input type="text" id="captcha-input" formControlName="capcha" class="cm-login__control captcha-input"
+        placeholder="Enter captcha code">
+    </div>
+
+    <button type="button" (click)="login()" class="cm-login__submit btn next">
+      Sign in
+    </button>
+
+    <div class="cm-login__footer">
+      <a routerLink="/auth/forgot_password">Forgot password?</a>
+    </div>
+  </form>
+</div>

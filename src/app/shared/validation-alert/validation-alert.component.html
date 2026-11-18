@@ -1,0 +1,88 @@
+<div class="modal-header">
+    <h4 class="modal-title">Update Failed!</h4>
+    <!-- <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button> -->
+    <button type="button" class="text-gray-500 hover:text-gray-700 focus:outline-none" aria-describedby="modal-title"
+        (click)="activeModal.dismiss('Cross click')">
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+
+</div>
+<div class="modal-body overflow-auto" style="max-height: 400px;">
+    <ng-container *ngFor="let item of invalidControls; let i = index">
+        <div class="bg-red-700 border border-red-700 text-light px-4 py-3 rounded-pill relative mb-4" role="alert">
+            <!-- <strong class="font-bold">Error! </strong> -->
+            <ng-container *ngIf="item.value?.required">
+                <span class="block sm:inline">
+                    <ng-container *ngIf="!item.obj.errorMessage">
+                        <strong [innerHTML]="item.obj.text"></strong> Required.
+                    </ng-container>
+                    <ng-container *ngIf="item.obj.errorMessage">
+                        <strong [innerHTML]="item.obj.errorMessage"></strong>
+                    </ng-container>
+                </span>
+            </ng-container>
+            <ng-container *ngIf="item.value?.minlength">
+                <span class="block sm:inline">
+                    <span [innerHTML]="item.obj.text"></span> should be {{item.obj.minlength}} characters long
+                </span>
+            </ng-container>
+            <ng-container *ngIf="item.value?.maxlength">
+                <span class="block sm:inline">
+                    <span [innerHTML]="item.obj.text"></span> should not exceed {{item.obj.maxlength}} characters
+                </span>
+            </ng-container>
+            <ng-container *ngIf="item.value?.pattern">
+                <span class="block sm:inline">
+                    <ng-container *ngIf="item.obj.type === 'email'">
+                        Please enter a valid email address
+                    </ng-container>
+                    <ng-container *ngIf="item.obj.type !== 'email'">
+                        <ng-container *ngIf="item.obj.patternErrorMessage">
+                            <span [innerHTML]="item.obj.patternErrorMessage"></span>
+                        </ng-container>
+                        <ng-container *ngIf="!item.obj.patternErrorMessage">
+                            Please provide valid input
+                        </ng-container>
+                    </ng-container>
+                </span>
+            </ng-container>
+            <ng-container *ngIf="item.value?.countryCode">
+                <span class="block sm:inline">
+                    <ng-container *ngIf="item.obj.countryCodeErrorMessage">
+                        <span [innerHTML]="item.obj.countryCodeErrorMessage"></span>
+                    </ng-container>
+                    <ng-container *ngIf="!item.obj.countryCodeErrorMessage">
+                        Please enter a valid phone number
+                    </ng-container>
+                </span>
+            </ng-container>
+            <ng-container *ngIf="item.value?.customMax">
+                <span class="block sm:inline">
+                    Value should be less than {{item.obj.range ? item.obj.range[1] : ''}}
+                </span>
+            </ng-container>
+            <ng-container *ngIf="item.value?.customMin">
+                <span class="block sm:inline">
+                    Value should be greater than {{item.obj.range ? item.obj.range[0] : ''}}
+                </span>
+            </ng-container>
+
+            <!-- <span class="absolute top-0 right-0 px-4 py-3">
+            <button type="button" class="text-red-500 hover:text-red-700" aria-label="Close" >
+              <svg class="fill-current h-6 w-6" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <title>Close</title>
+                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+              </svg>
+            </button>
+          </span> -->
+        </div>
+    </ng-container>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

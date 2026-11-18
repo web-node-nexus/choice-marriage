@@ -1,0 +1,27 @@
+.ed {
+  background-color: red;
+  color: white;
+}
+
+th {
+  color: red;
+}
+
+td {
+  color: #e33545;
+}
+
+.cur {
+  cursor: pointer;
+}
+
+/* Custom CSS for mobile view */
+@media (max-width: 767px) {
+  .custom-card {
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+}

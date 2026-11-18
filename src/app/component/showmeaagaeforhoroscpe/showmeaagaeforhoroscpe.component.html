@@ -1,0 +1,24 @@
+<ng-container *ngIf="horoscope">
+<div class="container text-center">
+  <div class="alert alert-warning" role="alert">
+    To view horoscope details, you must upgrade your plan. As you currently do not have any active plan.
+  </div>
+  <div class="d-grid gap-2">
+    <button class="btn btn-lg btn-primary" (click)="upgradePlan()">Upgrade</button>
+    <button class="btn btn-lg btn-secondary" (click)="goBack()">Back</button>
+  </div>
+</div>
+</ng-container>
+<ng-container *ngIf="contact">
+  <div class="container text-center">
+    <div class="alert alert-warning" role="alert">
+      To view contact details, you must upgrade your plan. As you currently do not have any active plan.
+    </div>
+    <div class="d-grid gap-2">
+      <button class="btn btn-lg btn-primary" (click)="upgradePlan()">Upgrade</button>
+      <button class="btn btn-lg btn-secondary" (click)="goBack()">Back</button>
+    </div>
+  </div>
+  </ng-container>
+
+

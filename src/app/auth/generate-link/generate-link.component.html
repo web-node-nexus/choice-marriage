@@ -1,0 +1,81 @@
+<ng-container>
+
+    <div class=" font-segeo md:w-[100%]">
+        <div class="border p-2 " style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; border-radius: 12px;">
+            <ng-container *ngIf="isTokenValid; else resetLinkexpired">
+                <form [formGroup]="changePasswordForm">
+                    <div class="">
+                        <div class=" ">
+                            <div class="space-y-1 mt-[1rem]">
+                                <div>
+                                    <label class="relative flex justify-end ">
+                                        <input id="password" autocomplete="off" placeholder="Password"
+                                            [type]="hide ? 'password' : 'text'"
+                                            class="w-[14rem] form-input shadow-sm bg-[#FFFFFF] text-[#000000] text-[13px] focus:outline-none rounded-[5px] focus:ring-[#2D2C6F] border border-[#F18181]  w-full block p-2"
+                                            formControlName="password">
+                                        <div class="flex absolute inset-y-0 m-[0.3rem] pointer-events-auto"
+                                            (click)="hide = !hide">
+                                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="space-y-1 mt-[1rem] mb-[1rem]">
+                                <div>
+                                    <label class="relative flex justify-end ">
+                                        <input id="password" autocomplete="off" placeholder="Confrim Password"
+                                            [type]="hide ? 'password' : 'text'"
+                                            class="w-[14rem] form-input shadow-sm bg-[#FFFFFF] text-[#000000] text-[13px] focus:outline-none rounded-[5px] focus:ring-[#2D2C6F] border border-[#F18181]  w-full block p-2"
+                                            formControlName="confrim_password">
+                                        <div class="flex absolute inset-y-0 m-[0.3rem] pointer-events-auto"
+                                            (click)="hide = !hide">
+                                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="captcha-container">
+                                <div class="captcha-container d-flex align-items-center gap-2 mt-2 ">
+                                    <div class="w-[80%]" style="border-radius: 12px;">
+                                        <img [src]="imageElement" alt="CAPTCHA Image"
+                                            class="captcha-image mr-2 border w-[100%] h-[47px] " style="border-radius: 12px;">
+                                    </div>
+                                    <div class="w-[20%] border bg-light" style="border-radius: 12px;">
+                                        <button class="btn refresh-captcha-btn w-[100%]"
+                                            (click)="renderCaptcha()"><mat-icon>refresh</mat-icon></button>
+                                    </div>
+                                </div>
+                                <input type="text" id="captcha-input" formControlName="capcha"
+                                    class="captcha-input p-2 mt-2 border w-100 mb-3" style="border-radius: 12px;outline: none;"
+                                    placeholder="ENTER CAPTCHA CODE">
+        
+        
+                                <!-- (click)="refreshCaptcha()" -->
+                            </div>
+
+                            <div>
+                                <button type="button" (click)="changePassword()" [disabled]="!changePasswordForm.valid"
+                                    class="btn w-100 text-center py-2 border border-transparent rounded-[5px] shadow-sm text-[14px] text-[#FFFFFF] font-semibold bg-[#D10A11] hover:bg-[#D10A11]  focus:outline-none focus:ring-2 hover:text-[#fff] focus:ring-offset-2 next">CHANGE
+                                    PASSWORD</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+            </ng-container>
+
+
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #resetLinkexpired>
+    <div class="reset-link-expired text-center">
+        <img src="assets/img/animation/expired.gif" alt="" srcset="" width="100px" height="100px">
+        <h2 class="p-2">Reset Link Expired</h2>
+        <p>The reset link has expired. Please request a new one.</p>
+        <button class="btn btn-success mt-2" routerLink="/auth/forgot_password"> <i class="fa-regular fa-paper-plane me-2"></i> Request A New Link</button>
+    </div>
+
+</ng-template>

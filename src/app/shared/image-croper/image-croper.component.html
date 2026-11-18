@@ -1,0 +1,64 @@
+
+
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Upload Picture's </h4>
+    <button class="btn btn-close text-danger" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+    <div class="d-flex justify-content-center align-items-center">
+        <ng-container *ngIf="!fileSelected">
+            <form class="form-container" enctype='multipart/form-data'>
+                <div class="upload-files-container">
+                    <div class="drag-file-area text-center">
+                        <label class="d-flex align-items-center flex-column">
+                            <span class="material-icons-outlined upload-icon"> file_upload </span>
+                            <h3 class="dynamic-message text-center"><span class="browse-files me-2"> <input type="file"
+                                        accept="image/*" class="default-file-input" 
+                                        (change)="fileChangeEvent($event)" />
+                                    <span class="browse-files-text me-2">browse file</span>
+                                </span></h3>
+                            <span>from device</span>
+                        </label>
+                    </div>
+
+                </div>
+            </form>
+        </ng-container>
+
+
+        <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
+        <ng-container *ngIf="fileSelected">
+
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="cropingImgHolder">
+                        <p class="btn btn-outline-success d-block mb-2"><i class="fa-regular fa-image me-2"></i>Original
+                        </p>
+                        <image-cropper [(transform)]="transform" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                            [aspectRatio]="3 /4 " accept="image/*" format="jpeg" (imageCropped)="imageCropped($event)"
+                            (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady()"
+                            (loadImageFailed)="loadImageFailed()" [hideResizeSquares]="true"></image-cropper>
+                            <div class="d-flex justify-content-between mt-2">
+                                <button class="btn btn-sm btn-success" style="width:100px;" (click)="zoomIn()"><i class="fa fa-plus"></i></button>
+                                <button class="btn btn-sm btn-danger" style="width:100px;" (click)="zoomOut()"><i class="fa fa-minus"></i></button>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="text-center previewImageHolder">
+                        <p class="btn btn-outline-success d-block mb-2"><i class="fa-regular fa-clone pe-2"></i>Preview
+                        </p>
+                        <img [src]="croppedImage" class="border" />
+                    </div>
+                </div>
+            </div>
+
+
+        </ng-container>
+    </div>
+</div>
+<div class="modal-footer text-center">
+    <!-- <button type="button" class="upload-button w-100" (click)="uploadFile()"> Upload </button> -->
+    <button type="button" class="upload-button w-100" *ngIf="fileSelected" (click)="uploadFile()"><i class="fa-solid fa-upload pe-2"></i> Upload </button>
+
+</div>

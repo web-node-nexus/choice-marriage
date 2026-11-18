@@ -1,0 +1,1211 @@
+<div class="coustom-margin"></div>
+<ng-container *ngIf="userAllData;else showSkeltonLoader">
+  <ng-container
+    *ngIf="userAllData && (userAllData?.user_profile_status == 'Completed' && userAllData?.user_info?.user_status=='Approved')">
+    <div class="container" style=" box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1607843137);" #targetElement>
+      <div class="text-center congratulation">
+        <div class="main-container">
+          <div class="check-container">
+            <div class="check-background">
+              <svg viewBox="0 0 65 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 25L27.3077 44L58.5 7" stroke="white" stroke-width="13" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="check-shadow"></div>
+          </div>
+        </div>
+        <h4 class="fw-bold text-success">
+          <i class="fa-solid fa-check me-2"></i>Congratulation
+        </h4>
+        <p>Your account is now approved</p>
+        <p class="mb-2">
+          <span class="text-danger">You are now view your matches
+          </span>
+          Click Below Button
+        </p>
+        <div>
+          <button mat-raised-button color="accent" class="me-2 " (click)="goFoeMatch()">Find Your Matches</button>
+          <button mat-raised-button color="primary" class="me-2" routerLink="/v1/my-profile">
+            View Profile
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container
+    *ngIf="userAllData && (userAllData?.user_profile_status == 'Completed' && userAllData?.user_info?.user_status=='Pending')">
+    <div class="alert alert-warning text-center " style=" box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1607843137);">
+
+      <div class="main-container">
+        <div class="check-container">
+          <div class="pending-background">
+            <img src="/assets/img/animation/icons8-pending.gif" alt="" srcset="" style="border-radius: 10px;">
+          </div>
+          <div class="pending-shadow"></div>
+        </div>
+      </div>
+      <h4 class="fw-bold text-warning">
+        <i class="fa-regular fa-clock me-2 fa-fade"></i>Processing
+      </h4>
+      <p class="m-2"><strong>PROFILE ID : </strong><strong class="text-denger"> {{profile?.profile_id}}</strong></p>
+      <div class="text-center">
+        <p class="pb-3">
+          <span class="text-danger">
+            Your Profile is Currently Under Verification . Please Wait A Few Minutes Or Contact Warming Verify For
+            Assistance .
+          </span>
+        </p>
+        <p class="pb-3">
+          <span>Call:-{{phonenumber}}</span><br>
+          <span>WhatsApp:-{{ whatsappnumber }}</span>
+        </p>
+      </div>
+
+      <!-- <button mat-raised-button color="accent" class="me-2" (click)="activeAccount()">Active Now</button> -->
+
+
+      <button mat-raised-button color="primary" class="me-2">
+        <a href="tel:{{ phonenumber }}" class="no-hover-color"><i class="fa-solid fa-phone me-2"></i> Call</a>
+      </button>
+
+      <button mat-raised-button color="success" class="me-2">
+        <a href="https://wa.me/{{ whatsappnumber }}"><i class="fa-brands fa-whatsapp me-2"></i> WhatsApp</a>
+      </button>
+      <button mat-raised-button color="success" class="m-2">
+        <a href="JavaScript:void(0)" (click)="relode()"><i class="fa-brands fa-refresh me-2"></i> Find Matches</a>
+      </button>
+
+    </div>
+  </ng-container>
+  <ng-container *ngIf="userAllData && userAllData?.user_profile_status == 'Not Completed'">
+    <div class="cm-setup">
+    <div class="cm-setup__head px-4 py-3 bg-branding text-white rounded pb-2">
+      <p class="cm-setup__eyebrow mb-1">Complete your profile</p>
+      <h3 class="h5 mb-0"><i class="fa-solid fa-address-card me-2"></i>{{active_taitel}}</h3>
+    </div>
+    <mat-horizontal-stepper [linear]="true" #stepper (selectionChange)="onStepChange($event)" class="cm-setup__stepper">
+
+      <mat-step [stepControl]="education_occupationDetailsForm">
+        <ng-container *ngIf="stepper.selectedIndex==0">
+          <form [formGroup]="education_occupationDetailsForm">
+            <ng-template matStepLabel>Education and Occupation Details</ng-template>
+            <div>
+              <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <label for="Highest_Education" class="form-label fs-12 fw-medium">Highest
+                    Education</label>
+                  <div>
+                    <!-- <p-dropdown [options]="allDropDownList['aducationalOptions1']" formControlName="user_highest_education" variant="filled" optionLabel="name"
+                    placeholder="Select Highest Education" styleClass="w-100" ></p-dropdown> -->
+
+                    <select placeholder="Select Highest Education" formControlName="user_highest_education"
+                      id="user_highest_education" class="chosen-select form-control w-100" tabindex="-1" width="100px">
+                      <option value="" hidden>select</option>
+                      <option *ngFor="let value of aducationalOptions1;trackBy: trackByFn;let i=index "
+                        value="{{value.name}}">{{ value.name }}
+                      </option>
+                    </select>
+
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Additional_Degree" class="form-label fs-12 fw-medium">Additional
+                      Degree</label>
+                    <div class="d-block">
+                      <select placeholder="Select Additional Degree" id="Additional_Degree" name="AdditionalDegree[]"
+                        formControlName="user_additional_education" class="chosen-select form-control w-100"
+                        tabindex="-1" width="100px" multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option *ngFor="let value of aducationalOptions2 ;trackBy: trackByFn " value="{{value.name}}">{{
+                          value.name }}
+                        </option>
+
+                      </select>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <label for="Occupation" class="form-label fs-12 fw-medium">Occupation</label>
+                  <div class="d-block">
+                    <select placeholder="Select Occupation" formControlName="user_occupation" id="Occupation"
+                      name="Occupation[]" class="chosen-select form-control w-100" tabindex="-1" width="100px"
+                      multiselect-search="true" multiselect-hide-x="true">
+                      <option value="" hidden>select</option>
+                      <option *ngFor="let value of ocupationOptions ;trackBy: trackByFn " value="{{value.name}}">{{
+                        value.name }}</option>
+                    </select>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="education_occupationDetailsForm.controls['user_occupation']?.invalid && education_occupationDetailsForm.controls['user_occupation']?.touched">
+                      Occupation is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Employeed_in" class="form-label fs-12 fw-medium">Employeed
+                      in</label>
+                    <div class="d-block">
+                      <select placeholder="Select Employeed in" formControlName="user_employed_In" id="Employeed_in"
+                        name="Employeed in[]" class="chosen-select form-control w-100" tabindex="-1" width="100px"
+                        multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option *ngFor="let value of employeeInOptions ;trackBy: trackByFn " value="{{value.name}}">
+                          {{value.name}}</option>
+
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="education_occupationDetailsForm.controls['user_employed_In']?.invalid && education_occupationDetailsForm.controls['user_employed_In']?.touched">
+                        Employeed In is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <label for="Employeed_in" class="form-label fs-12 fw-medium">Designation</label>
+                    <div class="d-block">
+                      <select placeholder="Select designation in" formControlName="user_deg" id="user_deg"
+                        name="designation" class="chosen-select form-control w-100" tabindex="-1" width="100px"
+                        multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option *ngFor="let value of degOptions" value="{{value.name}}">{{value.name}}</option>
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="education_occupationDetailsForm.controls['user_deg']?.invalid && education_occupationDetailsForm.controls['user_deg']?.touched">
+                        Designation is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Detail Of job/Business" class="form-label fs-12 fw-medium">Details of
+                      Occupation</label>
+                    <input type="text" class="form-control" formControlName="user_occupation_details"
+                      id="Detail Of job/Business" aria-describedby="Detail Of job/Business"
+                      placeholder="Detail Of job/Business">
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="education_occupationDetailsForm.controls['user_occupation_details']?.invalid && education_occupationDetailsForm.controls['user_occupation_details']?.touched">
+                      Detail Of job/Business is required.
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-12 col-md-12 mb-3">
+                <div>
+                  <label for="Job/business location" class="form-label fs-12 fw-medium">Job/business
+                    location <span style="color: red;"> (City Name Only)</span></label>
+                  <input type="text" class="form-control" formControlName="user_occupation_location"
+                    id="Job/business location" aria-describedby="Job/business location"
+                    placeholder="Job/business location">
+                  <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                    *ngIf="education_occupationDetailsForm.controls['user_occupation_location']?.invalid && education_occupationDetailsForm.controls['user_occupation_location']?.touched">
+                    Job/business location is required.
+                  </div>
+                </div>
+              </div> -->
+                <div for="Job/business location" class="form-label fs-12 fw-medium">Job/business
+                  location </div>
+                <div class="row">
+                  <div class="col-4">
+                    <div>
+                      <label for="country" class="form-label fs-12 fw-medium">Country</label>
+                      <select placeholder="Country Living In" id="Countrym" #countrySelect
+                        class="chosen-select form-control w-100" (change)="getstatefilter(countrySelect.value)"
+                        name="jobconty" tabindex="-1" width="100px" multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option *ngFor="let value of countryOption" value="{{value.name}}">{{value.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div>
+                      <label for="state" class="form-label fs-12 fw-medium">State</label>
+                      <select placeholder="City Living In" id="Cityk" name="lState"
+                        class="chosen-select form-control w-100" tabindex="-1" width="100px" multiselect-search="true"
+                        (change)="getcityfilter(StateData1.value)" #StateData1 name="joncity" multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option *ngFor="let value of stateOption" value="{{value.name}}">{{value.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div>
+                      <label for="city" class="form-label fs-12 fw-medium">City</label>
+                      <select placeholder="State Living In" formControlName="user_occupation_location" id="statej"
+                        name="lcity" class="chosen-select form-control w-100" tabindex="-1" width="100px"
+                        multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option *ngFor="let value of cityOption" value="{{value.name}}">{{value.name}}</option>
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem]"
+                        *ngIf="education_occupationDetailsForm.controls['city']?.invalid && education_occupationDetailsForm.controls['city']?.touched">
+                        City is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Annual Income" class="form-label fs-12 fw-medium">Annual
+                      Income</label>
+                    <div class="d-block">
+                      <select placeholder="Select Annual Income" formControlName="user_anual_income" id="AnnualIncome"
+                        name="AnnualIncome[]" class="chosen-select form-control w-100" tabindex="-1" width="100px"
+                        multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option *ngFor="let value of anualIncomeOptions;trackBy: trackByFn " value="{{ value.value }}">
+                          {{
+                          value.name }}
+                        </option>
+
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="education_occupationDetailsForm.controls['user_anual_income']?.invalid && education_occupationDetailsForm.controls['user_anual_income']?.touched">
+                        Annual Income is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </ng-container>
+      </mat-step>
+
+
+      <mat-step [stepControl]="physicalDeatilsForm">
+        <ng-container *ngIf="stepper.selectedIndex==1">
+          <form [formGroup]="physicalDeatilsForm">
+            <ng-template matStepLabel>physicalDeatilsForm Details</ng-template>
+            <!-- Form fields for education_occupationDetailsForm -->
+            <div>
+              <div class="row">
+
+                <div class="col-12 mb-3">
+                  <label class="form-label fs-12 fw-medium">Height </label>
+                  <div class="add-input">
+                    <select class="form-control form-control-sm select-cust" formControlName="user_height">
+                      <option value="" hidden>Select Height</option>
+                      <option [value]="item.value" *ngFor="let item of heightOptions"
+                        [selected]="item.value==physicalDeatilsForm.value.user_height">{{item.name}}</option>
+                    </select>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="physicalDeatilsForm.controls['user_height']?.invalid && physicalDeatilsForm.controls['user_height']?.touched">
+                      Height is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label fs-12 fw-medium">Waight (Kg)</label>
+                  <div class="add-input">
+                    <select class="form-control form-control-sm select-cust" formControlName="user_weight"
+                      name="from_height">
+                      <option value="" hidden>Select Waight</option>
+                      <option [value]="item.name" *ngFor="let item of weightOptions"
+                        [selected]="item.name==physicalDeatilsForm.value.user_weight">{{item.name}}</option>
+                    </select>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="physicalDeatilsForm.controls['user_weight']?.invalid && physicalDeatilsForm.controls['user_weight']?.touched">
+                      Waight is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Colour" class="form-label fs-12 fw-medium">Colour</label>
+                    <div class="d-block">
+                      <select placeholder="Select Colour" id="Colour" formControlName="user_complextion" name="colour[]"
+                        class="chosen-select form-control w-100" tabindex="-1" width="100px" multiselect-search="true"
+                        multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option value="Wheatish">Wheatish</option>
+                        <option value="Wheatish Brown">Wheatish Brown</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Very Fair">Very Fair</option>
+                        <option value="Dark">Dark</option>
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="physicalDeatilsForm.controls['user_complextion']?.invalid && physicalDeatilsForm.controls['user_complextion']?.touched">
+                        Colour is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="body_type" class="form-label fs-12 fw-medium">Body
+                      type:</label>
+                    <div class="d-block">
+                      <select placeholder="Select Body type" formControlName="user_body_type" id="body_type"
+                        name="body_type[]" class="chosen-select form-control w-100" tabindex="-1" width="100px"
+                        multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option value="Slim">Slim</option>
+                        <option value="Average">Average</option>
+                        <option value="Heavy">Heavy</option>
+                        <option value="Athletic">Athletic</option>
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="physicalDeatilsForm.controls['user_body_type']?.invalid && physicalDeatilsForm.controls['user_body_type']?.touched">
+                        Body type is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <label class="form-label fs-12 fw-medium">Physical Status:</label>
+                  <div class="add-input">
+                    <select placeholder="Select State" id="country1" formControlName="user_physical_status"
+                      name="state[]" class="chosen-select form-control" tabindex="-1" width="100px"
+                      multiselect-search="true" multiselect-hide-x="true">
+                      <option value="" hidden>select</option>
+                      <option value="Normal">Normal</option>
+                      <option value="Physical Chalenges">Physical Chalenges</option>
+
+                    </select>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="physicalDeatilsForm.controls['user_physical_status']?.invalid && physicalDeatilsForm.controls['user_physical_status']?.touched">
+                      Physical Status is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </ng-container>
+      </mat-step>
+
+
+      <mat-step [stepControl]="horoscopeForm">
+        <ng-container *ngIf="stepper.selectedIndex==2">
+          <form [formGroup]="horoscopeForm">
+            <ng-template matStepLabel>horoscopeForm</ng-template>
+            <div>
+              <!-- <h2>Horoscope</h2> -->
+
+              <div>
+                <label for="Rashi" class="form-label fs-12 fw-medium">Horoscope</label>
+                <mat-radio-group aria-label="Select an option" formControlName="user_horoscope"
+                  class="small-radio d-block">
+                  <mat-radio-button checked value="Yes">Yes</mat-radio-button>
+                  <mat-radio-button value="No">No</mat-radio-button>
+                </mat-radio-group>
+
+              </div>
+              <div>
+                <label for="Rashi" class="form-label fs-12 fw-medium">Mangalik</label>
+                <mat-radio-group aria-label="Select an option" formControlName="user_mangalik"
+                  class="small-radio d-block">
+                  <mat-radio-button value="Yes">Yes</mat-radio-button>
+                  <mat-radio-button checked value="No">No</mat-radio-button>
+                </mat-radio-group>
+
+
+
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Rashi" class="form-label fs-12 fw-medium">Rashi</label>
+                    <div class="d-block">
+                      <select placeholder="Select Rashi" id="Rashi" name="rashi[]"
+                        class="chosen-select form-control w-100" tabindex="-1" width="100px"
+                        formControlName="user_zodiacs" multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option *ngFor="let value of zodiacsOptions" value="{{value.name}}">{{value.display}}</option>
+
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="horoscopeForm.controls['user_zodiacs']?.invalid && horoscopeForm.controls['user_zodiacs']?.touched">
+                        Colour is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="nakhyatra" class="form-label fs-12 fw-medium">Nakhyatra:</label>
+                    <div class="d-block">
+                      <select placeholder="Select Nakhyatra" id="nakhyatra" name="nakhyatra[]"
+                        class="chosen-select form-control w-100" tabindex="-1" width="100px"
+                        formControlName="user_nakhyatra" multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option *ngFor="let value of nakhyatraOption" value="{{value.name}}">{{ value.name }}</option>
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="horoscopeForm.controls['user_nakhyatra']?.invalid && horoscopeForm.controls['user_nakhyatra']?.touched">
+                        Nakhyatra is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Gotra" class="form-label fs-12 fw-medium">Gotra</label>
+                    <div class="d-block">
+                      <select placeholder="Select Gotra" id="Gotra" name="Gotra[]"
+                        class="chosen-select form-control w-100" tabindex="-1" width="100px"
+                        formControlName="user_gotra" multiselect-search="true" multiselect-hide-x="true">
+
+                        <option value="" hidden>select</option>
+                        <option *ngFor="let value of gotraOption" value="{{value.name}}">{{value.name}}</option>
+
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="horoscopeForm.controls['user_gotra']?.invalid && horoscopeForm.controls['user_gotra']?.touched">
+                        Gotra is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Time of Birth" class="form-label fs-12 fw-medium">Time of Birth</label>
+                    <input type="time" class="form-control" formControlName="user_dateoftime" id="Time of Birth"
+                      aria-describedby="Time of Birth" placeholder="Time of Birth">
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="horoscopeForm.controls['user_dateoftime']?.invalid && horoscopeForm.controls['user_dateoftime']?.touched">
+                      Time of Birth is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Place of Birth" class="form-label fs-12 fw-medium">Place of Birth <span
+                        style="color: red;">
+                        (City Name Only)</span></label>
+                    <input type="text" class="form-control" formControlName="user_dateofplace" id="Place of Birth"
+                      aria-describedby="Place of Birth" placeholder="Place of Birth">
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="horoscopeForm.controls['user_dateofplace']?.invalid && horoscopeForm.controls['user_dateofplace']?.touched">
+                      Place of Birth is required.
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+              <div for="Job/business location" class="form-label fs-12 fw-medium">Place of Birth </div>
+              <div class="row col-12 col-md-12 mb-3">
+                <div class="col-4">
+                  <div>
+                    <label for="country" class="form-label fs-12 fw-medium">Country</label>
+                    <select placeholder="Country Living In" id="Countrym" #countrySelect2
+                      class="chosen-select form-control w-100" (change)="getstatefilter(countrySelect2.value)"
+                      name="jobconty" tabindex="-1" width="100px" multiselect-search="true" multiselect-hide-x="true">
+                      <option value="" hidden>select</option>
+                      <option *ngFor="let value of countryOption" value="{{value.name}}">{{value.name}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-4">
+                  <div>
+                    <label for="state" class="form-label fs-12 fw-medium">State</label>
+                    <select placeholder="City Living In" id="Cityk" name="lState"
+                      class="chosen-select form-control w-100" tabindex="-1" width="100px" multiselect-search="true"
+                      (change)="getcityfilter(StateData2.value)" #StateData2 name="joncity" multiselect-hide-x="true">
+                      <option value="" hidden>select</option>
+                      <option *ngFor="let value of stateOption" value="{{value.name}}">{{value.name}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-4">
+                  <div>
+                    <label for="city" class="form-label fs-12 fw-medium">City</label>
+                    <select placeholder="State Living In" formControlName="user_dateofplace" id="statej" name="lcity"
+                      class="chosen-select form-control w-100" tabindex="-1" width="100px" multiselect-search="true"
+                      multiselect-hide-x="true">
+                      <option value="" hidden>select</option>
+                      <option *ngFor="let value of cityOption" value="{{value.name}}">{{value.name}}</option>
+                    </select>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="horoscopeForm.controls['user_dateofplace']?.invalid && horoscopeForm.controls['user_dateofplace']?.touched">
+                      Place of Birth is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+        </ng-container>
+      </mat-step>
+
+
+
+      <mat-step [stepControl]="userFamilyDetailsForm">
+        <ng-container *ngIf="stepper.selectedIndex==3">
+          <form [formGroup]="userFamilyDetailsForm">
+            <ng-template matStepLabel>Education and Occupation Details</ng-template>
+            <div>
+              <div class="row">
+
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Family Value" class="form-label fs-12 fw-medium"> Family Value</label>
+                    <div class="d-block">
+                      <select placeholder="Select Family Value" id="Gotra" name="familyvalue[]"
+                        class="chosen-select form-control w-100" formControlName="user_family_value" tabindex="-1"
+                        width="100px" multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>Select</option>
+                        <option value="Traditional">Traditional</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Doesnot Matter">Doesnot Matter</option>
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="userFamilyDetailsForm.controls['user_family_value']?.invalid && userFamilyDetailsForm.controls['user_family_value']?.touched">
+                        Family Value is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Family Status" class="form-label fs-12 fw-medium">Family Status</label>
+                    <div class="d-block">
+                      <select placeholder="Select Family Value" id="familyvalue" name="familyvalue[]"
+                        class="chosen-select form-control w-100" formControlName="user_family_status" tabindex="-1"
+                        width="100px" multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>Select</option>
+                        <option value="Rich">Rich [ ଧନୀ ]</option>
+                        <option value="Middle Class">Middle Class [ମଧ୍ୟବିତ୍ତ]</option>
+                        <option value="Upper Middle Class">Upper Middle Class [ଉଚ୍ଚ ମଧ୍ୟବିତ୍ତ]</option>
+                        <option value="Upper Class">Upper Class [ଉଚ୍ଚ ଶ୍ରେଣୀ]</option>
+                        <option value="Lower Middle Class">Lower Middle Class [ନିମ୍ନ ମଧ୍ୟବିତ୍ତ]</option>
+                        <option value="Upper-Lower Class">Upper-Lower Class [ଉପର-ନିମ୍ନ ଶ୍ରେଣୀ]</option>
+                        <option value="Lower Class">Lower Class [ନିମ୍ନ ଶ୍ରେଣୀ]</option>
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="userFamilyDetailsForm.controls['user_family_status']?.invalid && userFamilyDetailsForm.controls['user_family_status']?.touched">
+                        Family Status is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Family type" class="form-label fs-12 fw-medium"> Family
+                      type</label>
+                    <div class="d-block">
+                      <select placeholder="Select Family type" id="Gotra" name="familytype[]"
+                        class="chosen-select form-control w-100" formControlName="user_family_type" tabindex="-1"
+                        width="100px" multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>Select</option>
+                        <option value="Joint Family">Joint Family</option>
+                        <option value="Extended Family">Extended Family</option>
+                        <option value="Single-Parent Family">Single-Parent Family</option>
+                        <option value="Blended Family">Blended Family</option>
+                        <option value="Intercultural Family">Intercultural Family</option>
+                        <option value="Intergenerational Family">Intergenerational Family</option>
+                        <option value="Multigenerational Family">Multigenerational Family</option>
+                        <option value="Stay-at-Home Parent Family">Stay-at-Home Parent Family</option>
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="userFamilyDetailsForm.controls['user_family_type']?.invalid && userFamilyDetailsForm.controls['user_family_type']?.touched">
+                        Family type is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 mb-3">
+                  <label for="Father Name" class="form-label fs-12 fw-medium">Father Name</label>
+                  <div class="d-block">
+                    <input type="text" formControlName="user_father_name" class="form-control" id="name"
+                      aria-describedby="name" placeholder="Father Name">
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="userFamilyDetailsForm.controls['user_father_name']?.invalid && userFamilyDetailsForm.controls['user_father_name']?.touched">
+                      Father Name is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 mb-3">
+                  <label for="Mother Name" class="form-label fs-12 fw-medium">Mother Name</label>
+                  <div class="d-block">
+                    <input type="text" formControlName="user_mother_name" class="form-control" id="name"
+                      aria-describedby="name" placeholder="Mother Name">
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="userFamilyDetailsForm.controls['user_mother_name']?.invalid && userFamilyDetailsForm.controls['user_mother_name']?.touched">
+                      Mother Name is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-12 col-md-12 mb-3">
+                  <label for="Occupation" class="form-label fs-12 fw-medium">Father Occupation</label>
+                  <div class="d-block">
+                    <select placeholder="Select Occupation" formControlName="user_father_occupation" id="Occupation"
+                      name="Occupation[]" class="chosen-select form-control w-100" tabindex="-1" width="100px"
+                      multiselect-search="true" multiselect-hide-x="true">
+                      <option value="" hidden>select</option>
+                      <option *ngFor="let value of fathersoc" [value]="value">{{ value }}</option>
+                    </select>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="userFamilyDetailsForm.controls['user_father_occupation']?.invalid && userFamilyDetailsForm.controls['user_father_occupation']?.touched">
+                      Father Occupation is required.
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <label for="Mother Occupation" class="form-label fs-12 fw-medium">Mother
+                    Occupation</label>
+                  <div class="d-block">
+                    <select placeholder="Select Mother Occupation" formControlName="user_mothers_occupation"
+                      id="Mother Occupation" name="Mother Occupation[]" class="chosen-select form-control w-100"
+                      tabindex="-1" width="100px" multiselect-search="true" multiselect-hide-x="true">
+                      <option value="" hidden>select</option>
+                      <option *ngFor="let value of mothersac" [value]="value">{{ value }}</option>
+                    </select>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="userFamilyDetailsForm.controls['user_mothers_occupation']?.invalid && userFamilyDetailsForm.controls['user_mothers_occupation']?.touched">
+                      Mother Occupation is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Number of Unmarried brothers" class="form-label fs-12 fw-medium"> Number of
+                      Unmarried brothers</label>
+                    <div class="d-block">
+                      <select placeholder="Select Number of Unmarried brothers"
+                        formControlName="user_no_of_unmarried_brother" id="Gotra" name="familytype[]"
+                        class="chosen-select form-control w-100" tabindex="-1" width="100px" multiselect-search="true"
+                        multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <!-- <option value="">Doesnot Matter</option> -->
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="userFamilyDetailsForm.controls['user_no_of_unmarried_brother']?.invalid && userFamilyDetailsForm.controls['user_no_of_unmarried_brother']?.touched">
+                        Number of Unmarried brothers is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Number of Unmarried brothers" class="form-label fs-12 fw-medium"> Number of
+                      married brothers</label>
+                    <div class="d-block">
+                      <select placeholder="Select Number of married brothers" class="chosen-select form-control w-100"
+                        formControlName="user_no_of_married_brother" id="Gotra" name="familytype[]"
+                        multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="userFamilyDetailsForm.controls['user_no_of_married_brother']?.invalid && userFamilyDetailsForm.controls['user_no_of_married_brother']?.touched">
+                        Number of married brothers is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Number of Unmarried brothers" class="form-label fs-12 fw-medium"> Number of
+                      Unmarried sisters</label>
+                    <div class="d-block">
+                      <select placeholder="Select Number of Unmarried sisters"
+                        formControlName="user_no_of_unmarried_sister" id="Gotra" name="familytype[]"
+                        class="chosen-select form-control w-100" tabindex="-1" width="100px" multiselect-search="true"
+                        multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="userFamilyDetailsForm.controls['user_no_of_unmarried_sister']?.invalid && userFamilyDetailsForm.controls['user_no_of_unmarried_sister']?.touched">
+                        Number of Unmarried sisters is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-12 mb-3">
+                  <div>
+                    <label for="Number of Unmarried brothers" class="form-label fs-12 fw-medium"> Number of
+                      Married sisters</label>
+                    <div class="d-block">
+                      <select placeholder="Select Number of Unmarried sisters" id="Gotra" name="familytype[]"
+                        class="chosen-select form-control w-100" formControlName="user_no_of_married_sister"
+                        tabindex="-1" width="100px" multiselect-search="true" multiselect-hide-x="true">
+                        <option value="" hidden>select</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                        *ngIf="userFamilyDetailsForm.controls['user_no_of_married_sister']?.invalid && userFamilyDetailsForm.controls['user_no_of_married_sister']?.touched">
+                        Number of Married sisters is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </ng-container>
+      </mat-step>
+
+      <mat-step [stepControl]="locationDetailsForm">
+        <ng-container *ngIf="stepper.selectedIndex==4">
+          <form [formGroup]="locationDetailsForm">
+            <ng-template matStepLabel>Education and Occupation Details</ng-template>
+            <div>
+
+              <!-- <div> -->
+              <div class="mb-3">
+                <label for="Current Address" class="form-label fs-12 fw-medium">Current Address</label>
+                <textarea class="form-control py-2" formControlName="user_Address" placeholder="Current Address"
+                  rows="8" name="curent_Address" id="curent_Address" required="" aria-required="true"
+                  spellcheck="false"></textarea>
+                <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                  *ngIf="locationDetailsForm.controls['user_Address']?.invalid && locationDetailsForm.controls['user_Address']?.touched">
+                  Current Address is required.
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12" style="padding: 0;">
+                  <div class="custom-form-container">
+                    <mat-form-field appearance="fill" class="custom-form-field" style="width: 100%;">
+                      <mat-label>Country Living In</mat-label>
+                      <mat-select id="Countrym" #locationcountry
+                        (selectionChange)="getstatefilter(locationcountry.value)" formControlName="user_country"
+                        class="chosen-select form-control w-100">
+                        <mat-option value="" disabled>Select</mat-option>
+                        <mat-option *ngFor="let country of countryOption" [value]="country.name">
+                          {{ country.name }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="locationDetailsForm.controls['user_country']?.invalid && locationDetailsForm.controls['user_country']?.touched">
+                        Country Living In is required.
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-12" style="padding: 0;">
+                  <div>
+                    <mat-form-field appearance="fill" class="custom-form-field" style="width: 100%;">
+                      <mat-label>State Living In</mat-label>
+                      <mat-select id="Cityk" #locationStateData1
+                        (selectionChange)="getcityfilter(locationStateData1.value)" formControlName="user_state"
+                        class="chosen-select form-control w-100">
+                        <mat-option value="" disabled>select</mat-option>
+                        <mat-option *ngFor="let value of stateOption" [value]="value.name">
+                          {{ value.name }}
+                        </mat-option>
+                      </mat-select>
+
+                      <!-- Error message -->
+                      <mat-error
+                        *ngIf="locationDetailsForm.controls['user_state']?.invalid && locationDetailsForm.controls['user_state']?.touched">
+                        State Living In is required.
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-12" style="padding: 0;">
+                  <div>
+                    <mat-form-field appearance="fill" class="custom-form-field" style="width: 100%;">
+                      <mat-label>City Living In</mat-label>
+                      <mat-select id="statej" formControlName="user_city" class="chosen-select form-control">
+                        <mat-option value="" disabled>select</mat-option>
+                        <mat-option *ngFor="let value of cityOption" [value]="value.name">
+                          {{ value.name }}
+                        </mat-option>
+                      </mat-select>
+
+                      <!-- Error message -->
+                      <mat-error
+                        *ngIf="locationDetailsForm.controls['user_city']?.invalid && locationDetailsForm.controls['user_city']?.touched">
+                        City Living In is required.
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+              </div>
+              <!-- </div>
+              <div> -->
+
+              <div>
+                <label for="Current Address" class="form-label fs-12 fw-medium d-block">Is Your Current
+                  Address Same With Permanent Address</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" (change)="onchangeAddress()" type="radio"
+                    formControlName="user_current_and_permanent_address_same" id="inlineRadio1" value="Yes">
+                  <label class="form-check-label" for="inlineRadio1">yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" (change)="onchangeAddress()" type="radio"
+                    formControlName="user_current_and_permanent_address_same" id="inlineRadio2" value="No">
+                  <label class="form-check-label" for="inlineRadio2">no</label>
+                </div>
+              </div>
+              <!-- <fieldset [disabled]="locationDetailsForm.value.user_current_and_permanent_address_same=='Yes'"> -->
+                <div class="row">
+                  <div class="col-12">
+                    <label for="Permanent Address" class="form-label fs-12 fw-medium">Permanent Address</label>
+                    <textarea class="form-control py-2" formControlName="user_Permanent_Address"
+                      placeholder="Permanent Address" rows="8" name="curent_Address" id="PermanentAddress" required=""
+                      aria-required="true" spellcheck="false" [readonly]="locationDetailsForm.value.user_current_and_permanent_address_same=='Yes'"></textarea>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="locationDetailsForm.controls['user_Permanent_Address']?.invalid && locationDetailsForm.controls['user_Permanent_Address']?.touched">
+                      Permanent Address is required.
+                    </div>
+                  </div>
+
+
+                  <mat-form-field appearance="fill" class="custom-form-field" style="width: 100%;padding: 0px;" >
+                    <mat-label>Permanent Country</mat-label>
+                    <mat-select id="Countryp" #countrySelect1 (selectionChange)="getstatefilter1(countrySelect1.value)"
+                      formControlName="user_Permanent_country" class="chosen-select form-control w-100" [disabled]="locationDetailsForm.value.user_current_and_permanent_address_same=='Yes'">
+                      <mat-option value="" disabled>Select</mat-option>
+                      <mat-option *ngFor="let value of countryOption" [value]="value.name">
+                        {{ value.name }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error
+                      *ngIf="locationDetailsForm.controls['user_Permanent_country']?.invalid && locationDetailsForm.controls['user_Permanent_country']?.touched">
+                      Permanent Country is required.
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="fill" class="custom-form-field" style="width: 100%;padding: 0px;">
+                    <mat-label>Permanent State</mat-label>
+                    <mat-select id="Stateh" #StateData (selectionChange)="getcityfilter1(StateData.value)"
+                      formControlName="user_Permanent_state" class="chosen-select form-control w-100" [disabled]="locationDetailsForm.value.user_current_and_permanent_address_same=='Yes'">
+                      <mat-option value="" disabled>Select</mat-option>
+                      <mat-option *ngFor="let value of stateOption1" [value]="value.name">
+                        {{ value.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="fill" class="custom-form-field" style="width: 100%;padding: 0px;">
+                    <mat-label>Permanent City</mat-label>
+                    <mat-select id="statep" formControlName="user_Permanent_city" [disabled]="locationDetailsForm.value.user_current_and_permanent_address_same=='Yes'"
+                      class="chosen-select form-control w-100">
+                      <mat-option value="" disabled>Select</mat-option>
+                      <mat-option *ngFor="let value of cityOption1" [value]="value.name">
+                        {{ value.name }}
+                      </mat-option>
+                    </mat-select>
+
+
+                  </mat-form-field>
+
+
+                </div>
+              <!-- </fieldset> -->
+            </div>
+            <!-- </div> -->
+
+          </form>
+        </ng-container>
+      </mat-step>
+
+
+      <mat-step [stepControl]="habitHobbiesForm">
+        <ng-container *ngIf="stepper.selectedIndex==5">
+          <form [formGroup]="habitHobbiesForm">
+            <ng-template matStepLabel>Education and Occupation Details</ng-template>
+            <div>
+
+              <div class="row">
+                <div class="col-md-6 col-12 mb-3">
+                  <label class="form-label fs-12 fw-medium">Diet:</label>
+                  <div class="add-input">
+                    <select placeholder="Select Diet" formControlName="user_diet" id="country1" name="state[]"
+                      class="chosen-select form-control" tabindex="-1" width="100px" multiselect-search="true"
+                      multiselect-hide-x="true">
+                      <option value="" hidden>Select </option>
+                      <option value="Full Vegetarian">Full Vegetarian</option>
+                      <option value="Non Vegetarian">Non Vegetarian</option>
+                      <option value="Occasional Nonveg">Occasional Nonveg</option>
+                      <option value="Eggiterian">Eggiterian</option>
+
+                    </select>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="habitHobbiesForm.controls['user_diet']?.invalid && habitHobbiesForm.controls['user_diet']?.touched">
+                      Diet is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-12 mb-3">
+                  <label class="form-label fs-12 fw-medium">Drinking:</label>
+                  <div class="add-input">
+                    <select placeholder="Select State" formControlName="user_drinking" id="country1" name="state[]"
+                      class="chosen-select form-control" tabindex="-1" width="100px" multiselect-search="true"
+                      multiselect-hide-x="true">
+                      <option value="" hidden>Select </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Sometime">Sometime</option>
+                    </select>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="habitHobbiesForm.controls['user_drinking']?.invalid && habitHobbiesForm.controls['user_drinking']?.touched">
+                      Drinking is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-md-6 col-12 mb-3">
+                  <label class="form-label fs-12 fw-medium">Smoking:</label>
+                  <div class="add-input">
+                    <select placeholder="Select State" formControlName="user_smoking" id="country1" name="state[]"
+                      class="chosen-select form-control" tabindex="-1" width="100px" multiselect-search="true"
+                      multiselect-hide-x="true">
+                      <option value="" hidden>Select </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Sometime">Sometime</option>
+                    </select>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="habitHobbiesForm.controls['user_smoking']?.invalid && habitHobbiesForm.controls['user_smoking']?.touched">
+                      Smoking is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-12 mb-3">
+                  <label class="form-label fs-12 fw-medium">You Like:</label>
+                  <div class="add-input">
+                    <select placeholder="Select You Like" formControlName="user_like" id="YouLike" name="YouLike[]"
+                      class="chosen-select form-control" tabindex="-1" width="100px" multiselect-search="true"
+                      multiselect-hide-x="true">
+                      <option value="" hidden>Select </option>
+                      <option *ngFor="let val of likedata" [value]="val.name">{{ val.name }}</option>
+                    </select>
+                    <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                      *ngIf="habitHobbiesForm.controls['user_like']?.invalid && habitHobbiesForm.controls['user_like']?.touched">
+                      You Like is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+          </form>
+        </ng-container>
+      </mat-step>
+
+
+      <mat-step [stepControl]="userAboutDetailsForm">
+        <ng-container *ngIf="stepper.selectedIndex==6">
+          <form [formGroup]="userAboutDetailsForm">
+            <ng-template matStepLabel>Education and Occupation Details</ng-template>
+            <div>
+
+              <!-- Add your fields for Step 5 here -->
+              <div class="mb-3">
+                <label for="AboutMe" class="form-label fs-12 fw-medium">About Me</label>
+                <textarea class="form-control py-2" placeholder="About Me" rows="8" name="description" id="description"
+                  formControlName="user_about" required aria-required="true" spellcheck="false"></textarea>
+                <div class="text-left text-[red] text-[12px] md:h-[0.8rem] h-[1rem] "
+                  *ngIf="userAboutDetailsForm.controls['user_about']?.invalid && userAboutDetailsForm.controls['user_about']?.touched">
+                  About Me is required.
+                </div>
+              </div>
+
+              <a (click)="generateAboutUs()" class="btn btn-outline-primary mb-2"><i
+                  class="fa-solid fa-wand-magic-sparkles"></i> Auto Generate</a>
+
+
+
+            </div>
+          </form>
+        </ng-container>
+      </mat-step>
+
+      <mat-step>
+        <ng-container *ngIf="stepper.selectedIndex==7">
+          <div class="text-center">
+            <ng-container *ngIf="userAllData['user_profile_images'].length > 0">
+              <a routerLink="/v1/upload_photo" class="btn btn-outline-primary d-block mb-2">
+                <i class="fa-solid fa-images"></i> View Uploaded Photo
+              </a>
+              <div class="d top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg" role="alert">
+                <div class="flex items-center">
+                  <!-- Checkmark Icon -->
+                  <svg class="w-6 h-6 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <!-- Message Text -->
+                  <span class="font-semibold text-lg">Profile Picture Uploaded Successfully!</span>
+                </div>
+              </div>
+            </ng-container>
+            <br>
+            <ng-container *ngIf="userAllData['user_profile_images'].length == 0">
+              <label for="photoInput"
+                class="text-sm font-semibold text-white bg-green-500 rounded-md px-3 py-1 mb-2 inline-block">
+                <i class="fa-solid fa-file-import me-2"></i> Upload Photo
+              </label>
+              <ng-container *ngIf="fileSelected">
+                <input type="file" (change)="fileChangeEvent($event)" id="photoInput1" class="hidden" accept="image/*">
+                <label class="btn btn-outline-danger d-block mt-2" for="photoInput1">
+                  <i class="fa-solid fa-trash"></i> Retake
+                </label>
+              </ng-container>
+              <ng-container *ngIf="!fileSelected">
+                <div>
+                  <input type="file" (change)="fileChangeEvent($event)" id="photoInput" class="hidden" accept="image/*">
+                  <span class="block py-4">No profile picture available</span>
+                  <label for="photoInput">
+                    <img class="img-responsive brd-radius-img p-2" src="../../../assets/images/dashboard/camera.jpg"
+                      alt="camere">
+                  </label>
+                </div>
+              </ng-container>
+
+              <!-- Image Cropper -->
+              <ng-container *ngIf="fileSelected">
+                <div class="flex justify-center items-center space-x-4 mt-2 mb-3">
+                  <div class="relative w-60 h-80 bg-gray-100 overflow-hidden">
+                    <p class="text-sm font-semibold text-white bg-blue-500 rounded-md px-3 py-1 mb-2 inline-block">
+                      <i class="fa-regular fa-image me-1"></i> Original
+                    </p>
+                    <div class="text-xs text-red-500 mb-2">Use the white area for up and down.</div>
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                      [aspectRatio]="3 / 4" format="jpeg" (imageCropped)="imageCropped($event)"
+                      (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady()"
+                      (loadImageFailed)="loadImageFailed()" [hideResizeSquares]="true"></image-cropper>
+                  </div>
+                  <div class="relative w-60 h-80 bg-gray-100 border overflow-hidden">
+                    <p class="text-sm font-semibold text-white bg-green-500 rounded-md px-3 py-1 mb-2 inline-block">
+                      <i class="fa-regular fa-clone me-1"></i> Preview
+                    </p>
+                    <img [src]="croppedImage" class="w-full h-full object-cover" />
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </ng-container>
+
+
+      </mat-step>
+
+      <mat-step>
+        <ng-container *ngIf="stepper.selectedIndex==8">
+
+          <app-partner-preference [showOnlyRegistrationPage]="true"></app-partner-preference>
+
+        </ng-container>
+      </mat-step>
+
+
+
+
+
+    </mat-horizontal-stepper>
+
+    <div class="cm-setup__nav flex space-x-4" *ngIf="stepper.selectedIndex!=8">
+      <!-- Back Button -->
+      <ng-container *ngIf="stepper.selectedIndex > 0">
+        <button type="button" (click)="goToPrevioudStep()"
+          class="cm-setup__back py-2 px-4 border border-transparent rounded-lg text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+          Back
+        </button>
+      </ng-container>
+      <!-- Next Button -->
+      <button type="submit" (click)="saveAndNext()"
+        class="cm-setup__next w-full sm:w-auto py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm text-white font-semibold bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+        Save & Next
+      </button>
+    </div>
+    </div>
+
+  </ng-container>
+</ng-container>
+
+
+
+
+
+<ng-template #showSkeltonLoader>
+
+  <div class="p-fluid">
+    <p-skeleton width="100%" height="2rem"></p-skeleton>
+    <p-skeleton width="100%" height="2rem" styleClass="mt-2"></p-skeleton>
+    <p-skeleton width="100%" height="2rem" styleClass="mt-2"></p-skeleton>
+    <p-skeleton width="100%" height="2rem" styleClass="mt-4"></p-skeleton>
+
+    <p-skeleton width="100%" height="2rem" styleClass="mt-2"></p-skeleton>
+    <p-skeleton width="100%" height="2rem" styleClass="mt-2"></p-skeleton>
+
+    <p-skeleton width="100%" height="2rem" styleClass="mt-2"></p-skeleton>
+    <p-skeleton width="100%" height="2rem" styleClass="mt-2"></p-skeleton>
+    <p-skeleton width="100%" height="2rem" styleClass="mt-4"></p-skeleton>
+    <p-skeleton width="100%" height="2rem" styleClass="mt-2"></p-skeleton>
+    <p-skeleton width="100%" height="2rem" styleClass="mt-2"></p-skeleton>
+
+    <p-skeleton width="100%" height="2rem" styleClass="mt-2"></p-skeleton>
+    <p-skeleton width="100%" height="2rem" styleClass="mt-2"></p-skeleton>
+    <p-skeleton width="100%" height="2rem" styleClass="mt-4"></p-skeleton>
+  </div>
+</ng-template>
